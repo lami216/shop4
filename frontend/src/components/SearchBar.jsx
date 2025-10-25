@@ -392,7 +392,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                         <div className='flex flex-row items-center gap-2 self-end sm:self-auto'>
                                                 <button
                                                         type='submit'
-                                                        className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-3 text-sm font-semibold text-athath-ink shadow-[0_12px_24px_rgba(201,162,39,0.35)] transition hover:bg-[#b89322] hover:shadow-[0_16px_30px_rgba(139,94,60,0.25)] disabled:cursor-not-allowed disabled:opacity-70'
+                                                        className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-3 text-sm font-semibold text-athath-ink on-gold shadow-[0_12px_24px_rgba(201,162,39,0.35)] transition hover:bg-[#b89322] hover:shadow-[0_16px_30px_rgba(139,94,60,0.25)] disabled:cursor-not-allowed disabled:opacity-70'
                                                         disabled={searching}
                                                 >
                                                         {searching ? (

@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
                                         )}
                                 </div>
                                 <button
-                                        className='mt-auto flex items-center justify-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 text-sm font-medium text-athath-ink transition-colors duration-300 hover:bg-[#b89322] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
+                                        className='mt-auto flex items-center justify-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 text-sm font-medium text-athath-ink on-gold transition-colors duration-300 hover:bg-[#b89322] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
                                         onClick={handleAddToCart}
                                 >
                                         <ShoppingCart size={20} />

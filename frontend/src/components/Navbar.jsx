@@ -19,7 +19,7 @@ const Navbar = () => {
                         <ShoppingCart size={18} />
                         <span className='hidden sm:inline'>{t("nav.cart")}</span>
                         {cartItemCount > 0 && (
-                                <span className='absolute -top-2 -right-2 rounded-full bg-athath-gold px-2 py-0.5 text-xs font-semibold text-athath-ink shadow-[0_4px_12px_rgba(201,162,39,0.4)] transition duration-200 group-hover:bg-[#b89322]'>
+                                <span className='absolute -top-2 -right-2 rounded-full bg-athath-gold px-2 py-0.5 text-xs font-semibold text-athath-ink on-gold shadow-[0_4px_12px_rgba(201,162,39,0.4)] transition duration-200 group-hover:bg-[#b89322]'>
                                         {cartItemCount}
                                 </span>
                         )}
@@ -84,7 +84,7 @@ const Navbar = () => {
                                                                 <>
                                                                         <Link
                                                                                 to={'/signup'}
-                                                                                className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 font-semibold text-athath-ink transition duration-200 hover:bg-[#b89322] hover:shadow-[0_12px_24px_rgba(201,162,39,0.35)]'
+                                                                                className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 font-semibold text-athath-ink on-gold transition duration-200 hover:bg-[#b89322] hover:shadow-[0_12px_24px_rgba(201,162,39,0.35)]'
                                                                         >
                                                                                 <UserPlus size={18} />
                                                                                 {t("nav.signup")}

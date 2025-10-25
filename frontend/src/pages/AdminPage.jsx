@@ -33,10 +33,10 @@ const AdminPage = () => {
         );
 
         return (
-                <div className='relative min-h-screen overflow-hidden'>
+                <div className='relative min-h-screen overflow-hidden bg-athath-ivory text-athath-ink'>
                         <div className='container relative z-10 mx-auto px-4 py-16'>
                                 <motion.h1
-                                        className='mb-8 text-center text-4xl font-bold text-athath-gold'
+                                        className='mb-8 text-center text-4xl font-bold'
                                         initial={{ opacity: 0, y: -20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8 }}
@@ -45,20 +45,20 @@ const AdminPage = () => {
                                 </motion.h1>
 
                                 <div className='flex justify-center mb-8'>
-                                        {tabs.map((tab) => (
-                                                <button
-                                                        key={tab.id}
-                                                        onClick={() => setActiveTab(tab.id)}
-                                                        className={`mx-2 flex items-center rounded-md px-4 py-2 transition-colors duration-200 ${
-                                                                activeTab === tab.id
-                                                                        ? "bg-athath-gold text-athath-ink"
-                                                                        : "bg-white/10 text-white/80 hover:bg-white/20"
-                                                        }`}
-                                                >
-                                                        <tab.icon className='ml-2 h-5 w-5' />
-                                                        {tab.label}
-                                                </button>
-                                        ))}
+                                        {tabs.map((tab) => {
+                                                const isActive = activeTab === tab.id;
+                                                return (
+                                                        <button
+                                                                key={tab.id}
+                                                                type='button'
+                                                                onClick={() => setActiveTab(tab.id)}
+                                                                className={`admin-tab tab mx-2 ${isActive ? "admin-tab--active" : ""}`}
+                                                        >
+                                                                <tab.icon className='ml-2 h-5 w-5 text-athath-gold' />
+                                                                {tab.label}
+                                                        </button>
+                                                );
+                                        })}
                                 </div>
                                 {activeTab === "create" && <CreateProductForm />}
                                 {activeTab === "products" && <ProductsList onEdit={() => setActiveTab("create")} />}

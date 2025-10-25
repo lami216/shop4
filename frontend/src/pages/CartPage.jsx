@@ -55,7 +55,7 @@ const EmptyCartUI = ({ t }) => (
                 <h3 className='text-[clamp(1.5rem,3vw,1.9rem)] font-semibold text-white'>{t("cart.empty.title")}</h3>
                 <p className='max-w-md text-sm text-white/70'>{t("cart.empty.description")}</p>
                 <Link
-                        className='mt-4 inline-flex min-h-[3rem] min-w-[12rem] items-center justify-center rounded-full bg-athath-gold px-6 text-sm font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus-visible:ring-2 focus-visible:ring-athath-gold focus-visible:ring-offset-2 focus-visible:ring-offset-athath-charcoal'
+                        className='mt-4 inline-flex min-h-[3rem] min-w-[12rem] items-center justify-center rounded-full bg-athath-gold px-6 text-sm font-semibold text-athath-ink on-gold transition duration-300 hover:bg-[#b8873d] focus:outline-none focus-visible:ring-2 focus-visible:ring-athath-gold focus-visible:ring-offset-2 focus-visible:ring-offset-athath-charcoal'
                         to='/'
                 >
                         {t("cart.empty.cta")}
