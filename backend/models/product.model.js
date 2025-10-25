@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema(
                 },
                 image: {
                         type: String,
-                        required: [true, "Image is required"],
+                        required: true,
                 },
                 images: {
                         type: [
@@ -26,9 +26,13 @@ const productSchema = new mongoose.Schema(
                                                 type: String,
                                                 required: true,
                                         },
+                                        fileId: {
+                                                type: String,
+                                                default: null,
+                                        },
                                         public_id: {
                                                 type: String,
-                                                required: true,
+                                                default: null,
                                         },
                                 },
                         ],

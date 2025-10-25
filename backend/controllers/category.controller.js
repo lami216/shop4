@@ -1,35 +1,7 @@
 import Category from "../models/category.model.js";
-import cloudinary from "../lib/cloudinary.js";
+import { uploadImage, deleteImage } from "../lib/imagekit.js";
 
-const isCloudinaryConfigured = () =>
-        Boolean(
-                process.env.CLOUDINARY_CLOUD_NAME &&
-                        process.env.CLOUDINARY_API_KEY &&
-                        process.env.CLOUDINARY_API_SECRET
-        );
-
-const uploadCategoryImage = async (image) => {
-        if (!image || typeof image !== "string") {
-                throw new Error("INVALID_IMAGE_FORMAT");
-        }
-
-        const isDataUri = image.startsWith("data:");
-
-        if (!isDataUri) {
-                throw new Error("INVALID_IMAGE_FORMAT");
-        }
-
-        if (!isCloudinaryConfigured()) {
-                return {
-                        secure_url: image,
-                        public_id: null,
-                };
-        }
-
-        return await cloudinary.uploader.upload(image, {
-                folder: "categories",
-        });
-};
+const isValidDataUri = (value) => typeof value === "string" && value.startsWith("data:");
 
 const slugify = (value) => {
         if (value === undefined || value === null) {
@@ -97,19 +69,31 @@ export const createCategory = async (req, res) => {
                         return res.status(400).json({ message: "Category image is required" });
                 }
 
-                let uploadResult;
-                try {
-                        uploadResult = await uploadCategoryImage(image);
-                } catch (uploadError) {
-                        if (uploadError.message === "INVALID_IMAGE_FORMAT") {
-                                return res.status(400).json({ message: "Invalid category image format" });
-                        }
-                        throw uploadError;
+                if (typeof image !== "string" || !image.trim()) {
+                        return res.status(400).json({ message: "Category image is required" });
                 }
 
-                if (!uploadResult?.secure_url) {
+                const trimmedImage = image.trim();
+
+                if (!isValidDataUri(trimmedImage)) {
+                        return res.status(400).json({ message: "Invalid category image format" });
+                }
+
+                let uploadResult;
+                try {
+                        uploadResult = await uploadImage(trimmedImage, "categories");
+                } catch (uploadError) {
+                        console.log("Error uploading category image", uploadError.message);
+                        return res
+                                .status(500)
+                                .json({ message: "Failed to process category image", error: uploadError.message });
+                }
+
+                if (!uploadResult?.url) {
                         return res.status(500).json({ message: "Failed to process category image" });
                 }
+
+                const { url, fileId } = uploadResult;
 
                 const slug = await generateUniqueSlug(trimmedName);
 
@@ -117,8 +101,9 @@ export const createCategory = async (req, res) => {
                         name: trimmedName,
                         description: trimmedDescription,
                         slug,
-                        imageUrl: uploadResult.secure_url,
-                        imagePublicId: uploadResult.public_id,
+                        imageUrl: url,
+                        imageFileId: fileId ?? null,
+                        imagePublicId: null,
                 });
 
                 res.status(201).json(serializeCategory(category));
@@ -151,31 +136,41 @@ export const updateCategory = async (req, res) => {
                         category.description = description.trim();
                 }
 
-                if (image && typeof image === "string" && image.startsWith("data:")) {
-                        let uploadResult;
-                        try {
-                                uploadResult = await uploadCategoryImage(image);
-                        } catch (uploadError) {
-                                if (uploadError.message === "INVALID_IMAGE_FORMAT") {
-                                        return res.status(400).json({ message: "Invalid category image format" });
-                                }
-                                throw uploadError;
+                if (typeof image === "string" && image.trim()) {
+                        const trimmedImage = image.trim();
+
+                        if (!isValidDataUri(trimmedImage)) {
+                                return res.status(400).json({ message: "Invalid category image format" });
                         }
 
-                        if (!uploadResult?.secure_url) {
+                        let uploadResult;
+                        try {
+                                uploadResult = await uploadImage(trimmedImage, "categories");
+                        } catch (uploadError) {
+                                console.log("Error uploading category image", uploadError.message);
                                 return res.status(500).json({ message: "Failed to process category image" });
                         }
 
-                        if (category.imagePublicId && isCloudinaryConfigured()) {
-                                try {
-                                        await cloudinary.uploader.destroy(category.imagePublicId);
-                                } catch (cleanupError) {
-                                        console.log("Failed to delete previous category image", cleanupError.message);
-                                }
+                        if (!uploadResult?.url) {
+                                return res.status(500).json({ message: "Failed to process category image" });
                         }
 
-                        category.imageUrl = uploadResult.secure_url;
-                        category.imagePublicId = uploadResult.public_id;
+                        const previousFileId = category.imageFileId;
+
+                        category.imageUrl = uploadResult.url;
+                        category.imageFileId = uploadResult.fileId ?? null;
+                        category.imagePublicId = null;
+
+                        if (previousFileId) {
+                                try {
+                                        await deleteImage(previousFileId);
+                                } catch (cleanupError) {
+                                        console.log(
+                                                "Failed to delete previous category image",
+                                                cleanupError.message
+                                        );
+                                }
+                        }
                 }
 
                 await category.save();
@@ -196,9 +191,9 @@ export const deleteCategory = async (req, res) => {
                         return res.status(404).json({ message: "Category not found" });
                 }
 
-                if (category.imagePublicId && isCloudinaryConfigured()) {
+                if (category.imageFileId) {
                         try {
-                                await cloudinary.uploader.destroy(category.imagePublicId);
+                                await deleteImage(category.imageFileId);
                         } catch (cleanupError) {
                                 console.log("Failed to delete category image", cleanupError.message);
                         }
