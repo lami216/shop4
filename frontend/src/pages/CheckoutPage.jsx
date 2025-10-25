@@ -315,7 +315,7 @@ const CheckoutPage = () => {
                                 </motion.section>
 
                                 <motion.aside
-                                        className='w-full rounded-xl border border-athath-wood/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm lg:max-w-sm'
+                                        className='w-full rounded-xl border border-athath-wood/40 bg-black p-6 shadow-lg backdrop-blur-sm lg:max-w-sm'
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.4, delay: 0.1 }}

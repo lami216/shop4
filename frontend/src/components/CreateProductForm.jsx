@@ -411,7 +411,7 @@ const CreateProductForm = () => {
 
                         <form onSubmit={handleSubmit} className='space-y-4'>
                                 <div>
-                                        <label htmlFor='name' className='block text-sm font-medium text-white/80'>
+                                        <label htmlFor='name' className='block text-sm font-medium text-athath-gold'>
                                                 {t("admin.createProduct.fields.name")}
                                         </label>
                                         <input
@@ -426,7 +426,7 @@ const CreateProductForm = () => {
                                 </div>
 
                                 <div>
-                                        <label htmlFor='description' className='block text-sm font-medium text-white/80'>
+                                        <label htmlFor='description' className='block text-sm font-medium text-athath-gold'>
                                                 {t("admin.createProduct.fields.description")}
                                         </label>
                                         <textarea
@@ -443,7 +443,7 @@ const CreateProductForm = () => {
                                 </div>
 
                                 <div>
-                                        <label htmlFor='price' className='block text-sm font-medium text-white/80'>
+                                        <label htmlFor='price' className='block text-sm font-medium text-athath-gold'>
                                                 {t("admin.createProduct.fields.price")}
                                         </label>
                                         <input
