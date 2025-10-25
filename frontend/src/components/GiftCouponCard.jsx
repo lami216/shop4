@@ -50,13 +50,13 @@ const GiftCouponCard = () => {
                 >
                         <div className='space-y-4'>
                                 <div>
-                                        <label htmlFor='voucher' className='mb-2 block text-sm font-medium text-white/80'>
+                                        <label htmlFor='voucher' className='mb-2 block text-sm font-medium text-athath-gold'>
                                                 {t("cart.coupon.label")}
                                         </label>
                                         <input
                                                 type='text'
                                                 id='voucher'
-                                                className='block w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 p-2.5 text-sm text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                className='block w-full rounded-lg border border-athath-gold/60 bg-athath-input p-2.5 text-sm text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 placeholder={t("cart.coupon.placeholder")}
                                                 value={userInputCode}
                                                 onChange={(e) => setUserInputCode(e.target.value)}
@@ -66,7 +66,7 @@ const GiftCouponCard = () => {
 
                                 <motion.button
                                         type='button'
-                                        className='flex w-full items-center justify-center rounded-lg bg-athath-gold px-5 py-2.5 text-sm font-semibold text-athath-charcoal transition-colors duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-wood/40'
+                                        className='flex w-full items-center justify-center rounded-lg bg-athath-gold px-5 py-2.5 text-sm font-semibold text-athath-ink transition-colors duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleApplyCoupon}

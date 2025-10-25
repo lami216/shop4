@@ -89,11 +89,11 @@ const FeaturedProducts = ({ featuredProducts }) => {
                                                                                                 />
                                                                                         </div>
                                                                                         <div className='p-4'>
-                                                                                                <h3 className='mb-2 text-lg font-semibold text-athath-charcoal'>{product.name}</h3>
-                                                                                                <div className='mb-4 flex flex-wrap items-baseline gap-2 text-athath-charcoal'>
+                                                                                                <h3 className='mb-2 text-lg font-semibold text-athath-ink'>{product.name}</h3>
+                                                                                                <div className='mb-4 flex flex-wrap items-baseline gap-2 text-athath-ink'>
                                                                                                         {isDiscounted ? (
                                                                                                                 <>
-                                                                                                                        <span className='max-w-full break-words text-sm text-athath-charcoal/50 line-through'>
+                                                                                                                        <span className='max-w-full break-words text-sm text-athath-ink/50 line-through'>
                                                                                                                                 {formatMRU(price)}
                                                                                                                         </span>
                                                                                                                         <span className='max-w-full break-words text-lg font-bold text-athath-gold'>
@@ -108,7 +108,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                                                                                                 </div>
                                                                                                 <button
                                                                                                         onClick={() => addToCart(enrichedProduct)}
-                                                                                                        className='flex w-full items-center justify-center gap-2 rounded-[18px] bg-athath-gold py-2 px-4 font-semibold text-white transition-colors duration-300 hover:bg-[#b89322]'
+                                                                                                        className='flex w-full items-center justify-center gap-2 rounded-[18px] bg-athath-gold py-2 px-4 font-semibold text-athath-ink transition-colors duration-300 hover:bg-[#b89322]'
                                                                                                 >
                                                                                                         <ShoppingCart className='h-5 w-5' />
                                                                                                         {t("common.actions.addToCart")}
@@ -123,7 +123,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                                         <button
                                                 onClick={prevSlide}
                                                 disabled={isStartDisabled}
-                                                className={`absolute top-1/2 -right-4 flex -translate-y-1/2 transform items-center justify-center rounded-full border border-athath-gold/30 bg-white/80 p-2 text-athath-charcoal shadow-md transition-colors duration-300 ${
+                                                className={`absolute top-1/2 -right-4 flex -translate-y-1/2 transform items-center justify-center rounded-full border border-athath-gold/30 bg-white/80 p-2 text-athath-ink shadow-md transition-colors duration-300 ${
                                                         isStartDisabled
                                                                 ? "cursor-not-allowed opacity-40"
                                                                 : "hover:border-athath-gold hover:bg-white"
@@ -135,7 +135,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                                         <button
                                                 onClick={nextSlide}
                                                 disabled={isEndDisabled}
-                                                className={`absolute top-1/2 -left-4 flex -translate-y-1/2 transform items-center justify-center rounded-full border border-athath-gold/30 bg-white/80 p-2 text-athath-charcoal shadow-md transition-colors duration-300 ${
+                                                className={`absolute top-1/2 -left-4 flex -translate-y-1/2 transform items-center justify-center rounded-full border border-athath-gold/30 bg-white/80 p-2 text-athath-ink shadow-md transition-colors duration-300 ${
                                                         isEndDisabled
                                                                 ? "cursor-not-allowed opacity-40"
                                                                 : "hover:border-athath-gold hover:bg-white"

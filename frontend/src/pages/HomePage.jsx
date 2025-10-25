@@ -32,15 +32,15 @@ const HomePage = () => {
                                         }}
                                 >
                                         <div className='absolute inset-0 bg-white/60 backdrop-blur-sm' />
-                                        <div className='relative z-10 flex flex-col items-center px-6 py-16 text-center text-athath-charcoal sm:px-10 lg:px-16'>
+                                        <div className='relative z-10 flex flex-col items-center px-6 py-16 text-center text-athath-ink sm:px-10 lg:px-16'>
                                                 <h1 className='mb-4 text-4xl font-bold text-athath-gold sm:text-5xl lg:text-6xl'>
                                                         {t("home.titleLine1")}
                                                 </h1>
-                                                <p className='mb-8 max-w-2xl text-lg text-athath-charcoal/80'>
+                                                <p className='mb-8 max-w-2xl text-lg text-athath-ink/80'>
                                                         {t("home.subtitle")}
                                                 </p>
                                                 <h2 className='mb-10 text-3xl font-semibold text-athath-wood'>اكتشف أناقة منزلك</h2>
-                                                <p className='mb-10 text-base text-athath-charcoal/70'>أثاث فاخر بتصاميم تجمع بين الجمال والراحة</p>
+                                                <p className='mb-10 text-base text-athath-ink/70'>أثاث فاخر بتصاميم تجمع بين الجمال والراحة</p>
                                                 <div className='w-full max-w-3xl'>
                                                         <SearchBar />
                                                 </div>
@@ -49,7 +49,7 @@ const HomePage = () => {
 
                                 <div className='mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
                                         {categories.length === 0 && !categoriesLoading && (
-                                                <div className='col-span-full rounded-[18px] border border-athath-gold/20 bg-white/80 p-8 text-center text-athath-charcoal/60 shadow-sm'>
+                                                <div className='col-span-full rounded-[18px] border border-athath-gold/20 bg-white/80 p-8 text-center text-athath-ink/60 shadow-sm'>
                                                         {t("categories.manager.list.empty")}
                                                 </div>
                                         )}

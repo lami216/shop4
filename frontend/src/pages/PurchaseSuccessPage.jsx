@@ -122,16 +122,16 @@ const PurchaseSuccessPage = () => {
                 : "شكرًا لاختيارك متجرنا. سنتواصل معك للتحقق من تفاصيل العنوان.";
 
         return (
-                <div className='min-h-screen bg-athath-charcoal px-4 py-10 text-athath-charcoal sm:py-16' dir='rtl'>
+                <div className='min-h-screen bg-athath-charcoal px-4 py-10 text-athath-white sm:py-16' dir='rtl'>
                         <div className='mx-auto w-full max-w-4xl'>
                                 <div className='h-5 sm:h-7' aria-hidden='true' />
-                                <section className='rounded-3xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 sm:p-10'>
+                                <section className='rounded-3xl bg-white/95 p-6 text-athath-ink shadow-xl ring-1 ring-black/5 sm:p-10'>
                                         <div className='flex flex-col items-center text-center'>
                                                 <span className='flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600'>
                                                         <CheckCircle className='h-6 w-6' />
                                                 </span>
                                                 <h1 className='mt-4 text-3xl font-bold sm:text-4xl'>{heading}</h1>
-                                                <p className='mt-3 max-w-2xl text-base text-athath-charcoal/70 sm:text-lg'>{description}</p>
+                                                <p className='mt-3 max-w-2xl text-base text-athath-ink/70 sm:text-lg'>{description}</p>
                                         </div>
 
                                         <div className='mt-6 flex justify-center'>
@@ -147,13 +147,13 @@ const PurchaseSuccessPage = () => {
 
                                         {orderDetails?.orderNumber && (
                                                 <div className='mt-6 flex justify-center'>
-                                                        <div className='rounded-2xl border border-athath-gold/40 bg-athath-gold/10 px-6 py-3 text-center text-athath-charcoal shadow-sm'>
-                                                                <div className='text-sm font-semibold text-athath-charcoal'>
+                                                        <div className='rounded-2xl border border-athath-gold/40 bg-athath-gold/10 px-6 py-3 text-center text-athath-ink shadow-sm'>
+                                                                <div className='text-sm font-semibold text-athath-ink'>
                                                                         {t("purchase.success.details.orderNumberLabel", {
                                                                                 orderNumber: formatNumberEn(orderDetails.orderNumber),
                                                                         })}
                                                                 </div>
-                                                                <div className='mt-1 text-xs text-athath-charcoal/70'>
+                                                                <div className='mt-1 text-xs text-athath-ink/70'>
                                                                         {t("purchase.success.details.orderTotalLabel", {
                                                                                 amount: formatMRU(totalAmount),
                                                                         })}
@@ -165,35 +165,35 @@ const PurchaseSuccessPage = () => {
                                         <section className='mt-8 space-y-6'>
                                                 {orderDetails ? (
                                                         <>
-                                                                <div className='rounded-2xl border border-athath-charcoal/10 bg-white p-5 shadow-sm sm:p-6'>
-                                                                        <div className='text-sm font-semibold text-athath-charcoal/50'>
+                                                                <div className='rounded-2xl border border-athath-charcoal/10 bg-white p-5 text-athath-ink shadow-sm sm:p-6'>
+                                                                        <div className='text-sm font-semibold text-athath-ink/60'>
                                                                                 {t("purchase.success.details.customer")}
                                                                         </div>
                                                                         <div className='mt-4 space-y-3 text-right text-base font-medium'>
                                                                                 <div className='flex items-baseline justify-between gap-4'>
-                                                                                        <span className='text-athath-charcoal/50'>
+                                                                                        <span className='text-athath-ink/60'>
                                                                                                 {t("purchase.success.details.name")}
                                                                                         </span>
-                                                                                        <span className='flex-1 text-left text-athath-charcoal'>{orderDetails?.customerName || "-"}</span>
+                                                                                        <span className='flex-1 text-left text-athath-ink'>{orderDetails?.customerName || "-"}</span>
                                                                                 </div>
                                                                                 <div className='flex items-baseline justify-between gap-4'>
-                                                                                        <span className='text-athath-charcoal/50'>
+                                                                                        <span className='text-athath-ink/60'>
                                                                                                 {t("purchase.success.details.phone")}
                                                                                         </span>
-                                                                                        <span className='flex-1 text-left text-athath-charcoal'>{orderDetails?.phone || "-"}</span>
+                                                                                        <span className='flex-1 text-left text-athath-ink'>{orderDetails?.phone || "-"}</span>
                                                                                 </div>
                                                                                 <div className='flex items-baseline justify-between gap-4'>
-                                                                                        <span className='text-athath-charcoal/50'>
+                                                                                        <span className='text-athath-ink/60'>
                                                                                                 {t("purchase.success.details.address")}
                                                                                         </span>
-                                                                                        <span className='flex-1 text-left text-athath-charcoal'>{orderDetails?.address || "-"}</span>
+                                                                                        <span className='flex-1 text-left text-athath-ink'>{orderDetails?.address || "-"}</span>
                                                                                 </div>
                                                                         </div>
                                                                 </div>
 
-                                                                <div className='overflow-hidden rounded-2xl border border-athath-charcoal/15 bg-white shadow-sm'>
+                                                                <div className='overflow-hidden rounded-2xl border border-athath-charcoal/15 bg-white text-athath-ink shadow-sm'>
                                                                         <table className='min-w-full border-collapse text-right text-sm sm:text-base'>
-                                                                                <thead className='bg-athath-charcoal/5 text-athath-charcoal/70'>
+                                                                                <thead className='bg-athath-charcoal/5 text-athath-ink/70'>
                                                                                         <tr>
                                                                                                 <th scope='col' className='px-4 py-3 font-medium'>
                                                                                                         {t("purchase.success.details.image")}
@@ -212,7 +212,7 @@ const PurchaseSuccessPage = () => {
                                                                                                 </th>
                                                                                         </tr>
                                                                                 </thead>
-                                                                                <tbody className='text-athath-charcoal'>
+                                                                                <tbody className='text-athath-ink'>
                                                                                         {storedItems.length > 0 ? (
                                                                                                 storedItems.map((item) => {
                                                                                                         const {
@@ -235,7 +235,7 @@ const PurchaseSuccessPage = () => {
                                                                                                                                                         className='h-16 w-16 rounded-lg object-cover'
                                                                                                                                                 />
                                                                                                                                         ) : (
-                                                                                                                                                <div className='grid h-16 w-16 place-items-center rounded-lg bg-athath-charcoal/10 text-athath-charcoal/40'>
+                                                        <div className='grid h-16 w-16 place-items-center rounded-lg bg-athath-charcoal/10 text-athath-ink/40'>
                                                                                                                                                         <ShoppingBag className='h-6 w-6' />
                                                                                                                                                 </div>
                                                                                                                                         )}
@@ -252,14 +252,14 @@ const PurchaseSuccessPage = () => {
                                                                                                                         <td className='px-4 py-4 align-middle text-left font-semibold'>
                                                                                                                                 {formatNumberEn(item.quantity || 0)}
                                                                                                                         </td>
-                                                                                                                        <td className='px-4 py-4 align-middle text-left text-athath-charcoal/70'>
+                                                                <td className='px-4 py-4 align-middle text-left text-athath-ink/70'>
                                                                                                                                 <div className='flex flex-col items-start'>
                                                                                                                                         {isDiscounted && (
-                                                                                                                                                <span className='text-xs text-athath-charcoal/50 line-through'>
+                                                        <span className='text-xs text-athath-ink/50 line-through'>
                                                                                                                                                         {formatMRU(originalPrice)}
                                                                                                                                                 </span>
                                                                                                                                         )}
-                                                                                                                                        <span className='font-semibold text-athath-charcoal'>
+                                                <span className='font-semibold text-athath-ink'>
                                                                                                                                                 {formatMRU(discountedPrice)}
                                                                                                                                         </span>
                                                                                                                                 </div>
@@ -272,7 +272,7 @@ const PurchaseSuccessPage = () => {
                                                                                                 })
                                                                                         ) : (
                                                                                                 <tr>
-                                                                                                        <td colSpan={5} className='px-4 py-6 text-center text-athath-charcoal/50'>
+                                        <td colSpan={5} className='px-4 py-6 text-center text-athath-ink/50'>
                                                                                                                 {t("purchase.success.details.empty")}
                                                                                                         </td>
                                                                                                 </tr>
@@ -282,18 +282,18 @@ const PurchaseSuccessPage = () => {
                                                                 </div>
 
                                                                 <div className='rounded-2xl border border-athath-charcoal/15 bg-white p-5 shadow-sm sm:p-6'>
-                                                                        <div className='flex items-center justify-between text-base text-athath-charcoal/70'>
+                                                                        <div className='flex items-center justify-between text-base text-athath-ink/70'>
                                                                                 <span>{t("purchase.success.details.countLabel")}</span>
-                                                                                <span className='text-lg font-semibold text-athath-charcoal'>{formatNumberEn(totalCount)}</span>
+                                                                                <span className='text-lg font-semibold text-athath-ink'>{formatNumberEn(totalCount)}</span>
                                                                         </div>
-                                                                        <div className='mt-3 flex items-center justify-between border-t border-athath-charcoal/10 pt-3 text-base text-athath-charcoal/70'>
+                                                                        <div className='mt-3 flex items-center justify-between border-t border-athath-charcoal/10 pt-3 text-base text-athath-ink/70'>
                                                                                 <span>{t("purchase.success.details.grandTotalLabel")}</span>
-                                                                                <span className='text-lg font-semibold text-athath-charcoal'>{formatMRU(totalAmount)}</span>
+                                                                                <span className='text-lg font-semibold text-athath-ink'>{formatMRU(totalAmount)}</span>
                                                                         </div>
                                                                 </div>
                                                         </>
                                                 ) : (
-                                                        <div className='rounded-2xl border border-athath-charcoal/15 bg-white p-6 text-center text-athath-charcoal/70'>
+                                                        <div className='rounded-2xl border border-athath-charcoal/15 bg-white p-6 text-center text-athath-ink/70'>
                                                                 {t("purchase.success.noDetails")}
                                                         </div>
                                                 )}

@@ -420,7 +420,7 @@ const CreateProductForm = () => {
                                                 name='name'
                                                 value={formState.name}
                                                 onChange={(event) => setFormState({ ...formState, name: event.target.value })}
-                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 required
                                         />
                                 </div>
@@ -437,7 +437,7 @@ const CreateProductForm = () => {
                                                         setFormState({ ...formState, description: event.target.value })
                                                 }
                                                 rows='3'
-                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 required
                                         />
                                 </div>
@@ -453,7 +453,7 @@ const CreateProductForm = () => {
                                                 value={formState.price}
                                                 onChange={(event) => setFormState({ ...formState, price: event.target.value })}
                                                 step='0.01'
-                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 required
                                         />
                                 </div>
@@ -499,7 +499,7 @@ const CreateProductForm = () => {
                                                                 step='0.01'
                                                                 value={formState.discountPercentage}
                                                                 onChange={handleDiscountPercentageChange}
-                                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                                 placeholder={t("admin.createProduct.placeholders.discountPercentage")}
                                                         />
                                                         {discountedPreviewPrice !== null && (
@@ -526,7 +526,7 @@ const CreateProductForm = () => {
                                                 onChange={(event) =>
                                                         setFormState({ ...formState, category: event.target.value })
                                                 }
-                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 required
                                         >
                                                 <option value=''>
@@ -625,7 +625,7 @@ const CreateProductForm = () => {
 
                                 <button
                                         type='submit'
-                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-wood/60 disabled:opacity-50'
+                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-gold/60 disabled:opacity-50'
                                         disabled={loading || totalImages === 0}
                                 >
                                         {loading ? (

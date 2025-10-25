@@ -44,7 +44,7 @@ function App() {
 	if (checkingAuth) return <LoadingSpinner />;
 
         return (
-                <div dir='rtl' className='relative min-h-screen bg-athath-ivory text-athath-charcoal'>
+                <div dir='rtl' className='relative min-h-screen bg-athath-ivory text-athath-ink'>
                         <div className='relative z-50 pt-24'>
                                 <Navbar />
                                 <Routes>
@@ -68,7 +68,7 @@ function App() {
                                 toastOptions={{
                                         style: {
                                                 background: "#FFFFFF",
-                                                color: "#2C2C2C",
+                                                color: "#1C1C1C",
                                                 borderRadius: "18px",
                                                 border: "1px solid rgba(201, 162, 39, 0.25)",
                                                 boxShadow: "0 20px 40px rgba(0,0,0,0.08)",

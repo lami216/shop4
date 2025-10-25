@@ -375,13 +375,13 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                         onChange={handleChange}
                                                         ref={inputRef}
                                                         placeholder={t("search.placeholder")}
-                                                        className='w-full rounded-[18px] border border-athath-charcoal/10 bg-white/80 py-3 pr-12 pl-4 text-base text-athath-charcoal placeholder:text-athath-charcoal/50 transition focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
+                                                        className='w-full rounded-[18px] border border-athath-charcoal/10 bg-white/80 py-3 pr-12 pl-4 text-base text-athath-ink placeholder:text-athath-placeholder transition focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 />
                                                 {query && (
                                                         <button
                                                                 type='button'
                                                                 onClick={handleClear}
-                                                                className='absolute left-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-athath-cream/70 text-athath-charcoal/70 transition hover:bg-white'
+                                                                className='absolute left-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-athath-cream/70 text-athath-ink/70 transition hover:bg-white'
                                                                 aria-label={t("search.clear")}
                                                         >
                                                                 <X className='h-4 w-4' />
@@ -392,7 +392,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                         <div className='flex flex-row items-center gap-2 self-end sm:self-auto'>
                                                 <button
                                                         type='submit'
-                                                        className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(201,162,39,0.35)] transition hover:bg-[#b89322] hover:shadow-[0_16px_30px_rgba(139,94,60,0.25)] disabled:cursor-not-allowed disabled:opacity-70'
+                                                        className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-3 text-sm font-semibold text-athath-ink shadow-[0_12px_24px_rgba(201,162,39,0.35)] transition hover:bg-[#b89322] hover:shadow-[0_16px_30px_rgba(139,94,60,0.25)] disabled:cursor-not-allowed disabled:opacity-70'
                                                         disabled={searching}
                                                 >
                                                         {searching ? (
@@ -405,7 +405,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                 <button
                                                         type='button'
                                                         onClick={handleToggleCategories}
-                                                        className='flex items-center gap-2 rounded-[18px] border border-athath-charcoal/10 bg-white/70 px-5 py-3 text-sm font-semibold text-athath-wood transition hover:border-athath-gold hover:bg-white hover:text-athath-charcoal'
+                                                        className='flex items-center gap-2 rounded-[18px] border border-athath-charcoal/10 bg-white/70 px-5 py-3 text-sm font-semibold text-athath-wood transition hover:border-athath-gold hover:bg-white hover:text-athath-ink'
                                                 >
                                                         <Grid3x3 className='h-5 w-5' />
                                                         <span>
@@ -419,7 +419,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                         </form>
 
                         {supportsOverlay && showResults && (
-                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-charcoal shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
+                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-ink shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
                                         <div className='mb-3 flex items-center justify-between text-sm font-semibold text-athath-gold'>
                                                 <span>{t("search.resultsTitle")}</span>
                                                 {searching && <Loader2 className='h-4 w-4 animate-spin text-athath-gold' />}
@@ -432,7 +432,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                         )}
 
                                         {!searching && !error && results.length === 0 && query.trim() && (
-                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-charcoal/70'>
+                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-ink/70'>
                                                         {t("search.noResults", { query })}
                                                 </div>
                                         )}
@@ -448,7 +448,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                                 <button
                                                                                         type='button'
                                                                                         onClick={() => handleSelectProduct(product)}
-                                                                                        className='group flex w-full items-center gap-4 rounded-[18px] border border-transparent bg-white/80 p-4 text-right text-athath-charcoal transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_14px_30px_rgba(201,162,39,0.18)]'
+                                                                                        className='group flex w-full items-center gap-4 rounded-[18px] border border-transparent bg-white/80 p-4 text-right text-athath-ink transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_14px_30px_rgba(201,162,39,0.18)]'
                                                                                 >
                                                                                         <div className='h-16 w-16 flex-shrink-0 overflow-hidden rounded-[18px] border border-athath-gold/20 bg-athath-cream/50'>
                                                                                                 {image ? (
@@ -458,23 +458,23 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                                                                 className='h-full w-full object-cover transition duration-300 group-hover:scale-105'
                                                                                                         />
                                                                                                 ) : (
-                                                                                                        <div className='flex h-full w-full items-center justify-center text-athath-charcoal/40'>
+                                                                                                        <div className='flex h-full w-full items-center justify-center text-athath-ink/40'>
                                                                                                                 <SearchIcon className='h-6 w-6' />
                                                                                                         </div>
                                                                                                 )}
                                                                                         </div>
                                                                                         <div className='flex flex-1 flex-col items-start gap-1 text-right'>
-                                                                                                <span className='text-base font-semibold text-athath-charcoal'>
+                                                                                                <span className='text-base font-semibold text-athath-ink'>
                                                                                                         {product.name}
                                                                                                 </span>
-                                                                                                <p className='line-clamp-2 text-sm text-athath-charcoal/60'>
+                                                                                                <p className='line-clamp-2 text-sm text-athath-ink/60'>
                                                                                                         {product.description}
                                                                                                 </p>
                                                                                         </div>
                                                                                         <div className='flex flex-col items-end gap-1'>
                                                                                                 {isDiscounted ? (
                                                                                                         <>
-                                                                                                                <span className='text-xs text-athath-charcoal/50 line-through'>
+                                                                                                                <span className='text-xs text-athath-ink/50 line-through'>
                                                                                                                         {formatMRU(price)}
                                                                                                                 </span>
                                                                                                                 <span className='text-sm font-semibold text-athath-gold'>
@@ -497,14 +497,14 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                         )}
 
                         {showCategories && (
-                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-charcoal shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
+                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-ink shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
                                         <div className='mb-3 flex items-center justify-between text-sm font-semibold text-athath-gold'>
                                                 <span>{t("search.categoriesTitle")}</span>
                                                 {categoriesLoading && <Loader2 className='h-4 w-4 animate-spin text-athath-gold' />}
                                         </div>
 
                                         {!categoriesLoading && categories.length === 0 && (
-                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-charcoal/70'>
+                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-ink/70'>
                                                         {t("search.categoriesEmpty")}
                                                 </div>
                                         )}
@@ -527,7 +527,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                         <button
                                                                                 type='button'
                                                                                 onClick={() => handleSelectCategory(category)}
-                                                                                className='flex w-full items-center justify-between gap-3 rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm font-semibold text-athath-charcoal transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_10px_22px_rgba(201,162,39,0.15)]'
+                                                                                className='flex w-full items-center justify-between gap-3 rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm font-semibold text-athath-ink transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_10px_22px_rgba(201,162,39,0.15)]'
                                                                         >
                                                                                 <span>{category.name}</span>
                                                                         </button>

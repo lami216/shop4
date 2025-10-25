@@ -237,7 +237,7 @@ const ProductDetailPage = () => {
 
                                                 <button
                                                         onClick={handleAddToCart}
-                                                        className='inline-flex items-center justify-center rounded-full bg-athath-gold px-6 py-3 text-lg font-semibold text-athath-charcoal transition-colors duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-wood/40'
+                                                        className='inline-flex items-center justify-center rounded-full bg-athath-gold px-6 py-3 text-lg font-semibold text-athath-ink transition-colors duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
                                                 >
                                                         {t("common.actions.addToCart")}
                                                 </button>

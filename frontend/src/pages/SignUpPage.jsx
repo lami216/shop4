@@ -23,12 +23,12 @@ const SignUpPage = () => {
 
         const renderField = (id, label, type, Icon, placeholder, valueKey) => (
                 <div>
-                        <label htmlFor={id} className='block text-sm font-medium text-white/80'>
+                        <label htmlFor={id} className='block text-sm font-medium text-athath-gold'>
                                 {label}
                         </label>
                         <div className='relative mt-1 rounded-md shadow-sm'>
-                                <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
-                                        <Icon className='h-5 w-5 text-white/50' aria-hidden='true' />
+                                <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-athath-gold/70'>
+                                        <Icon className='h-5 w-5' aria-hidden='true' />
                                 </div>
                                 <input
                                         id={id}
@@ -36,7 +36,7 @@ const SignUpPage = () => {
                                         required
                                         value={formData[valueKey]}
                                         onChange={(e) => setFormData({ ...formData, [valueKey]: e.target.value })}
-                                        className='block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 pr-10 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood sm:text-sm'
+                                        className='block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 pr-10 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40 sm:text-sm'
                                         placeholder={placeholder}
                                 />
                         </div>
@@ -99,7 +99,7 @@ const SignUpPage = () => {
 
                                                 <button
                                                         type='submit'
-                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-wood/60 disabled:opacity-50'
+                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-gold/60 disabled:opacity-50'
                                                         disabled={loading}
                                                 >
                                                         {loading ? (
@@ -116,7 +116,7 @@ const SignUpPage = () => {
                                                 </button>
                                         </form>
 
-                                        <p className='mt-8 text-center text-sm text-white/70'>
+                                        <p className='mt-8 text-center text-sm text-athath-ink/70'>
                                                 {t("auth.signup.prompt")} {" "}
                                                 <Link to='/login' className='font-medium text-athath-wood transition duration-300 hover:text-athath-gold'>
                                                         {t("auth.signup.cta")}{" "}
