@@ -255,7 +255,7 @@ const AdminCoupons = () => {
                                 </div>
                                 <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
                                         <div className='flex items-center rounded-lg bg-white/10 px-3 py-2 shadow-inner'>
-                                                <Search className='mr-2 h-5 w-5 text-payzone-gold' />
+                                                <Search className='mr-2 h-5 w-5 text-athath-gold' />
                                                 <input
                                                         type='text'
                                                         value={searchTerm}
@@ -279,7 +279,7 @@ const AdminCoupons = () => {
                                                 <button
                                                         type='button'
                                                         onClick={handleSortToggle}
-                                                        className='rounded-md bg-payzone-gold/10 p-1 text-payzone-gold transition hover:bg-payzone-gold/20'
+                                                        className='rounded-md bg-athath-gold/10 p-1 text-athath-gold transition hover:bg-athath-gold/20'
                                                 >
                                                         {localSortOrder === "asc" ? (
                                                                 <SortAsc className='h-5 w-5' />
@@ -291,7 +291,7 @@ const AdminCoupons = () => {
                                         <button
                                                 type='button'
                                                 onClick={openCreateForm}
-                                                className='flex items-center justify-center gap-2 rounded-lg bg-payzone-gold px-4 py-2 font-semibold text-payzone-navy shadow transition hover:bg-yellow-400'
+                                                className='flex items-center justify-center gap-2 rounded-lg bg-athath-gold px-4 py-2 font-semibold text-athath-charcoal shadow transition hover:bg-yellow-400'
                                         >
                                                 <PlusCircle className='h-5 w-5' />
                                                 {t("admin.coupons.addButton")}
@@ -316,7 +316,7 @@ const AdminCoupons = () => {
                                                         <tr>
                                                                 <td colSpan={6} className='px-4 py-6 text-center text-white'>
                                                                         <div className='flex items-center justify-center gap-2'>
-                                                                                <Loader2 className='h-5 w-5 animate-spin text-payzone-gold' />
+                                                                                <Loader2 className='h-5 w-5 animate-spin text-athath-gold' />
                                                                                 {t("common.loading")}
                                                                         </div>
                                                                 </td>
@@ -371,7 +371,7 @@ const AdminCoupons = () => {
                                                                                         <button
                                                                                                 type='button'
                                                                                                 onClick={() => openEditForm(coupon)}
-                                                                                                className='inline-flex items-center gap-1 rounded-md bg-payzone-gold/10 px-3 py-1 text-sm text-payzone-gold transition hover:bg-payzone-gold/20'
+                                                                                                className='inline-flex items-center gap-1 rounded-md bg-athath-gold/10 px-3 py-1 text-sm text-athath-gold transition hover:bg-athath-gold/20'
                                                                                                 disabled={mutationLoading}
                                                                                         >
                                                                                                 <Edit3 className='h-4 w-4' />
@@ -437,7 +437,7 @@ const AdminCoupons = () => {
 
                         {isFormOpen && (
                                 <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4'>
-                                        <div className='w-full max-w-md rounded-2xl bg-payzone-navy p-6 shadow-2xl'>
+                                        <div className='w-full max-w-md rounded-2xl bg-athath-charcoal p-6 shadow-2xl'>
                                                 <div className='mb-4 flex items-start justify-between'>
                                                         <div>
                                                                 <h3 className='text-xl font-semibold text-white'>
@@ -488,7 +488,7 @@ const AdminCoupons = () => {
                                                                                         onChange={(event) =>
                                                                                                 handleFieldChange("bulkCodes", event.target.value)
                                                                                         }
-                                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-payzone-gold focus:outline-none'
+                                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-athath-gold focus:outline-none'
                                                                                 />
                                                                                 <p className='mt-1 text-xs text-white/60'>
                                                                                         {t("admin.coupons.form.bulkHint")}
@@ -507,7 +507,7 @@ const AdminCoupons = () => {
                                                                                         onChange={(event) =>
                                                                                                 handleFieldChange("code", event.target.value)
                                                                                         }
-                                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-payzone-gold focus:outline-none'
+                                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-athath-gold focus:outline-none'
                                                                                         maxLength={32}
                                                                                         required
                                                                                 />
@@ -530,7 +530,7 @@ const AdminCoupons = () => {
                                                                         step='1'
                                                                         value={formValues.discountPercentage}
                                                                         onChange={(event) => handleFieldChange("discountPercentage", event.target.value)}
-                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-payzone-gold focus:outline-none'
+                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-athath-gold focus:outline-none'
                                                                         required
                                                                 />
                                                                 {formErrors.discountPercentage && (
@@ -547,7 +547,7 @@ const AdminCoupons = () => {
                                                                         type='datetime-local'
                                                                         value={formValues.expiresAt}
                                                                         onChange={(event) => handleFieldChange("expiresAt", event.target.value)}
-                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-payzone-gold focus:outline-none'
+                                                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-white focus:border-athath-gold focus:outline-none'
                                                                         required
                                                                 />
                                                                 {formErrors.expiresAt && (
@@ -594,7 +594,7 @@ const AdminCoupons = () => {
                                                                 </button>
                                                                 <button
                                                                         type='submit'
-                                                                        className='flex items-center gap-2 rounded-lg bg-payzone-gold px-4 py-2 text-sm font-semibold text-payzone-navy transition hover:bg-yellow-400 disabled:opacity-60'
+                                                                        className='flex items-center gap-2 rounded-lg bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-charcoal transition hover:bg-yellow-400 disabled:opacity-60'
                                                                         disabled={mutationLoading}
                                                                 >
                                                                         {mutationLoading && <Loader2 className='h-4 w-4 animate-spin' />}

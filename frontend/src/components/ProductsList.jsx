@@ -33,14 +33,14 @@ const ProductsList = ({ onEdit }) => {
 
         return (
                 <motion.div
-                        className='mx-auto max-w-4xl rounded-xl border border-payzone-indigo/40 bg-white/5 shadow-lg backdrop-blur-sm'
+                        className='mx-auto max-w-4xl rounded-xl border border-athath-wood/40 bg-white/5 shadow-lg backdrop-blur-sm'
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                 >
                         <div className='overflow-x-auto'>
                                 <table className='min-w-full divide-y divide-white/10'>
-                                <thead className='bg-payzone-navy/80'>
+                                <thead className='bg-athath-charcoal/80'>
                                         <tr>
                                                 {[ 
                                                         t("admin.productsTable.headers.product"),
@@ -63,10 +63,10 @@ const ProductsList = ({ onEdit }) => {
 
                                 <tbody className='divide-y divide-white/10 bg-white/5'>
                                         {products?.map((product) => (
-                                                <tr key={product._id} className='transition-colors duration-200 hover:bg-payzone-navy/40'>
+                                                <tr key={product._id} className='transition-colors duration-200 hover:bg-athath-charcoal/40'>
                                                         <td className='whitespace-nowrap px-6 py-4'>
                                                                 <div className='flex items-center gap-3'>
-                                                                        <div className='h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-payzone-indigo/40'>
+                                                                        <div className='h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-athath-wood/40'>
                                                                                 <img className='h-full w-full object-cover' src={product.image} alt={product.name} />
                                                                         </div>
                                                                         <div>
@@ -81,7 +81,7 @@ const ProductsList = ({ onEdit }) => {
                                                                                         {formatMRU(product.price)}
                                                                                 </span>
                                                                         ) : (
-                                                                                <span className='text-payzone-gold'>
+                                                                                <span className='text-athath-gold'>
                                                                                         {formatMRU(product.price)}
                                                                                 </span>
                                                                         )}
@@ -109,9 +109,9 @@ const ProductsList = ({ onEdit }) => {
                                                                         onClick={() => toggleFeaturedProduct(product._id)}
                                                                         className={`rounded-full p-1 transition-colors duration-200 ${
                                                                                 product.isFeatured
-                                                                                        ? "bg-payzone-gold text-payzone-navy"
-                                                                                        : "bg-payzone-navy/60 text-white/70"
-                                                                        } hover:ring-2 hover:ring-payzone-indigo/40`}
+                                                                                        ? "bg-athath-gold text-athath-charcoal"
+                                                                                        : "bg-athath-charcoal/60 text-white/70"
+                                                                        } hover:ring-2 hover:ring-athath-wood/40`}
                                                                 >
                                                                         <Star className='h-5 w-5' />
                                                                 </button>
@@ -120,7 +120,7 @@ const ProductsList = ({ onEdit }) => {
                                                                 <div className='flex items-center justify-end gap-4'>
                                                                         <button
                                                                                 onClick={() => handleEdit(product)}
-                                                                                className='inline-flex items-center text-white/80 transition-colors duration-200 hover:text-payzone-gold'
+                                                                                className='inline-flex items-center text-white/80 transition-colors duration-200 hover:text-athath-gold'
                                                                         >
                                                                                 <Edit3 className='h-5 w-5' />
                                                                         </button>

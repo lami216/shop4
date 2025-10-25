@@ -363,11 +363,11 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                 <div ref={wrapperRef} className='mx-auto flex w-full max-w-4xl flex-col gap-3'>
                         <form
                                 onSubmit={handleSubmit}
-                                className='flex flex-col gap-3 rounded-3xl border border-white/10 bg-payzone-navy p-4 shadow-xl'
+                                className='flex flex-col gap-3 rounded-[18px] border border-athath-gold/25 bg-white/90 p-4 shadow-[0_20px_40px_rgba(0,0,0,0.08)] backdrop-blur'
                         >
                                 <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
                                         <div className='relative flex-1'>
-                                                <SearchIcon className='pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-payzone-gold/80' />
+                                                <SearchIcon className='pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-athath-gold/80' />
                                                 <input
                                                         type='search'
                                                         name='searchInput'
@@ -375,13 +375,13 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                         onChange={handleChange}
                                                         ref={inputRef}
                                                         placeholder={t("search.placeholder")}
-                                                        className='w-full rounded-2xl border border-transparent bg-payzone-navy/60 py-3 pr-12 pl-4 text-base text-payzone-white placeholder:text-payzone-white/60 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo/60'
+                                                        className='w-full rounded-[18px] border border-athath-charcoal/10 bg-white/80 py-3 pr-12 pl-4 text-base text-athath-charcoal placeholder:text-athath-charcoal/50 transition focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                 />
                                                 {query && (
                                                         <button
                                                                 type='button'
                                                                 onClick={handleClear}
-                                                                className='absolute left-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white/70 transition hover:bg-white/20'
+                                                                className='absolute left-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-athath-cream/70 text-athath-charcoal/70 transition hover:bg-white'
                                                                 aria-label={t("search.clear")}
                                                         >
                                                                 <X className='h-4 w-4' />
@@ -392,7 +392,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                         <div className='flex flex-row items-center gap-2 self-end sm:self-auto'>
                                                 <button
                                                         type='submit'
-                                                        className='flex items-center gap-2 rounded-2xl bg-gradient-to-r from-payzone-gold to-payzone-indigo px-5 py-3 text-sm font-semibold text-payzone-white shadow-md transition hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-80'
+                                                        className='flex items-center gap-2 rounded-[18px] bg-athath-gold px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(201,162,39,0.35)] transition hover:bg-[#b89322] hover:shadow-[0_16px_30px_rgba(139,94,60,0.25)] disabled:cursor-not-allowed disabled:opacity-70'
                                                         disabled={searching}
                                                 >
                                                         {searching ? (
@@ -405,7 +405,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                 <button
                                                         type='button'
                                                         onClick={handleToggleCategories}
-                                                        className='flex items-center gap-2 rounded-2xl border border-payzone-indigo/40 bg-payzone-navy/70 px-5 py-3 text-sm font-semibold text-payzone-gold transition hover:border-payzone-gold/60 hover:text-payzone-white'
+                                                        className='flex items-center gap-2 rounded-[18px] border border-athath-charcoal/10 bg-white/70 px-5 py-3 text-sm font-semibold text-athath-wood transition hover:border-athath-gold hover:bg-white hover:text-athath-charcoal'
                                                 >
                                                         <Grid3x3 className='h-5 w-5' />
                                                         <span>
@@ -419,20 +419,20 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                         </form>
 
                         {supportsOverlay && showResults && (
-                                <div className='rounded-3xl border border-white/10 bg-payzone-navy p-4 shadow-2xl'>
-                                        <div className='mb-3 flex items-center justify-between text-sm font-semibold text-payzone-gold'>
+                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-charcoal shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
+                                        <div className='mb-3 flex items-center justify-between text-sm font-semibold text-athath-gold'>
                                                 <span>{t("search.resultsTitle")}</span>
-                                                {searching && <Loader2 className='h-4 w-4 animate-spin text-payzone-indigo' />}
+                                                {searching && <Loader2 className='h-4 w-4 animate-spin text-athath-gold' />}
                                         </div>
 
                                         {!searching && error && (
-                                                <div className='rounded-2xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200'>
+                                                <div className='rounded-[18px] border border-red-300/40 bg-red-100/30 p-4 text-sm text-red-700'>
                                                         {error}
                                                 </div>
                                         )}
 
                                         {!searching && !error && results.length === 0 && query.trim() && (
-                                                <div className='rounded-2xl border border-white/5 bg-white/5 p-4 text-sm text-payzone-white/70'>
+                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-charcoal/70'>
                                                         {t("search.noResults", { query })}
                                                 </div>
                                         )}
@@ -448,9 +448,9 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                                 <button
                                                                                         type='button'
                                                                                         onClick={() => handleSelectProduct(product)}
-                                                                                        className='group flex w-full items-center gap-4 rounded-2xl border border-transparent bg-white/5 p-4 text-right transition hover:border-payzone-gold/50 hover:bg-white/10'
+                                                                                        className='group flex w-full items-center gap-4 rounded-[18px] border border-transparent bg-white/80 p-4 text-right text-athath-charcoal transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_14px_30px_rgba(201,162,39,0.18)]'
                                                                                 >
-                                                                                        <div className='h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-payzone-indigo/30 bg-payzone-navy/50'>
+                                                                                        <div className='h-16 w-16 flex-shrink-0 overflow-hidden rounded-[18px] border border-athath-gold/20 bg-athath-cream/50'>
                                                                                                 {image ? (
                                                                                                         <img
                                                                                                                 src={image}
@@ -458,31 +458,31 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                                                                 className='h-full w-full object-cover transition duration-300 group-hover:scale-105'
                                                                                                         />
                                                                                                 ) : (
-                                                                                                        <div className='flex h-full w-full items-center justify-center text-payzone-white/60'>
+                                                                                                        <div className='flex h-full w-full items-center justify-center text-athath-charcoal/40'>
                                                                                                                 <SearchIcon className='h-6 w-6' />
                                                                                                         </div>
                                                                                                 )}
                                                                                         </div>
                                                                                         <div className='flex flex-1 flex-col items-start gap-1 text-right'>
-                                                                                                <span className='text-base font-semibold text-payzone-white'>
+                                                                                                <span className='text-base font-semibold text-athath-charcoal'>
                                                                                                         {product.name}
                                                                                                 </span>
-                                                                                                <p className='line-clamp-2 text-sm text-payzone-white/60'>
+                                                                                                <p className='line-clamp-2 text-sm text-athath-charcoal/60'>
                                                                                                         {product.description}
                                                                                                 </p>
                                                                                         </div>
                                                                                         <div className='flex flex-col items-end gap-1'>
                                                                                                 {isDiscounted ? (
                                                                                                         <>
-                                                                                                                <span className='text-xs text-payzone-white/60 line-through'>
+                                                                                                                <span className='text-xs text-athath-charcoal/50 line-through'>
                                                                                                                         {formatMRU(price)}
                                                                                                                 </span>
-                                                                                                                <span className='text-sm font-semibold text-payzone-gold'>
+                                                                                                                <span className='text-sm font-semibold text-athath-gold'>
                                                                                                                         {formatMRU(discountedPrice)}
                                                                                                                 </span>
                                                                                                         </>
                                                                                                 ) : (
-                                                                                                        <span className='text-sm font-semibold text-payzone-gold'>
+                                                                                                        <span className='text-sm font-semibold text-athath-gold'>
                                                                                                                 {formatMRU(price)}
                                                                                                         </span>
                                                                                                 )}
@@ -497,16 +497,14 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                         )}
 
                         {showCategories && (
-                                <div className='rounded-3xl border border-white/10 bg-payzone-navy p-4 shadow-2xl'>
-                                        <div className='mb-3 flex items-center justify-between text-sm font-semibold text-payzone-gold'>
+                                <div className='rounded-[18px] border border-athath-gold/25 bg-white/95 p-4 text-athath-charcoal shadow-[0_20px_40px_rgba(0,0,0,0.08)]'>
+                                        <div className='mb-3 flex items-center justify-between text-sm font-semibold text-athath-gold'>
                                                 <span>{t("search.categoriesTitle")}</span>
-                                                {categoriesLoading && (
-                                                        <Loader2 className='h-4 w-4 animate-spin text-payzone-indigo' />
-                                                )}
+                                                {categoriesLoading && <Loader2 className='h-4 w-4 animate-spin text-athath-gold' />}
                                         </div>
 
                                         {!categoriesLoading && categories.length === 0 && (
-                                                <div className='rounded-2xl border border-white/5 bg-white/5 p-4 text-sm text-payzone-white/70'>
+                                                <div className='rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm text-athath-charcoal/70'>
                                                         {t("search.categoriesEmpty")}
                                                 </div>
                                         )}
@@ -518,7 +516,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                         <button
                                                                                 type='button'
                                                                                 onClick={handleClearCategorySelection}
-                                                                                className='flex w-full items-center justify-between gap-3 rounded-2xl border border-transparent bg-white/10 p-4 text-sm font-semibold text-payzone-gold transition hover:border-payzone-gold/60 hover:bg-white/20'
+                                                                                className='flex w-full items-center justify-between gap-3 rounded-[18px] border border-transparent bg-white/80 p-4 text-sm font-semibold text-athath-gold transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_12px_24px_rgba(201,162,39,0.18)]'
                                                                         >
                                                                                 <span>{t("search.clearCategory")}</span>
                                                                         </button>
@@ -529,7 +527,7 @@ const SearchBar = ({ variant = "global", categorySlug = null }) => {
                                                                         <button
                                                                                 type='button'
                                                                                 onClick={() => handleSelectCategory(category)}
-                                                                                className='flex w-full items-center justify-between gap-3 rounded-2xl border border-transparent bg-white/5 p-4 text-sm font-semibold text-payzone-white transition hover:border-payzone-gold/50 hover:bg-white/10'
+                                                                                className='flex w-full items-center justify-between gap-3 rounded-[18px] border border-athath-charcoal/10 bg-white/70 p-4 text-sm font-semibold text-athath-charcoal transition hover:-translate-y-1 hover:border-athath-gold/60 hover:bg-white shadow-sm hover:shadow-[0_10px_22px_rgba(201,162,39,0.15)]'
                                                                         >
                                                                                 <span>{category.name}</span>
                                                                         </button>
