@@ -48,12 +48,12 @@ const SearchPage = () => {
 
                                         {loading && (
                                                 <div className='flex justify-center py-12'>
-                                                        <Loader2 className='h-10 w-10 animate-spin text-payzone-gold' />
+                                                        <Loader2 className='h-10 w-10 animate-spin text-athath-gold' />
                                                 </div>
                                         )}
 
                                         {!loading && hasSearched && results.length === 0 && !error && (
-                                                <div className='rounded-3xl border border-white/10 bg-payzone-navy p-6 text-center text-lg text-payzone-white/70'>
+                                                <div className='rounded-3xl border border-white/10 bg-athath-charcoal p-6 text-center text-lg text-athath-white/70'>
                                                         {query.trim()
                                                                 ? t("search.noResults", { query })
                                                                 : t("common.status.noProducts")}
@@ -69,7 +69,7 @@ const SearchPage = () => {
                                         )}
 
                                         {!loading && !hasSearched && !error && (
-                                                <div className='rounded-3xl border border-white/10 bg-payzone-navy p-6 text-center text-payzone-white/70'>
+                                                <div className='rounded-3xl border border-white/10 bg-athath-charcoal p-6 text-center text-athath-white/70'>
                                                         {t("search.placeholder")}
                                                 </div>
                                         )}

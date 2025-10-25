@@ -52,29 +52,29 @@ const AnalyticsTab = () => {
                                         title={t("admin.analytics.cards.users")}
                                         value={formatNumberEn(analyticsData.users)}
                                         icon={Users}
-                                        gradient='from-payzone-indigo/70 via-payzone-indigo/60 to-payzone-navy'
+                                        gradient='from-athath-wood/70 via-athath-wood/60 to-athath-charcoal'
                                 />
                                 <AnalyticsCard
                                         title={t("admin.analytics.cards.products")}
                                         value={formatNumberEn(analyticsData.products)}
                                         icon={Package}
-                                        gradient='from-payzone-gold/80 via-payzone-gold/60 to-payzone-navy'
+                                        gradient='from-athath-gold/80 via-athath-gold/60 to-athath-charcoal'
                                 />
                                 <AnalyticsCard
                                         title={t("admin.analytics.cards.sales")}
                                         value={formatNumberEn(analyticsData.totalSales)}
                                         icon={ShoppingCart}
-                                        gradient='from-payzone-indigo/60 via-payzone-gold/40 to-payzone-navy'
+                                        gradient='from-athath-wood/60 via-athath-gold/40 to-athath-charcoal'
                                 />
                                 <AnalyticsCard
                                         title={t("admin.analytics.cards.revenue")}
                                         value={formatMRU(analyticsData.totalRevenue)}
                                         icon={DollarSign}
-                                        gradient='from-payzone-gold via-payzone-indigo/50 to-payzone-navy'
+                                        gradient='from-athath-gold via-athath-wood/50 to-athath-charcoal'
                                 />
                         </div>
                         <motion.div
-                                className='rounded-xl border border-payzone-indigo/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm'
+                                className='rounded-xl border border-athath-wood/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm'
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.25 }}
@@ -117,7 +117,7 @@ export default AnalyticsTab;
 
 const AnalyticsCard = ({ title, value, icon: Icon, gradient }) => (
         <motion.div
-                className='relative overflow-hidden rounded-xl border border-white/10 bg-payzone-navy/80 p-6 shadow-lg'
+                className='relative overflow-hidden rounded-xl border border-white/10 bg-athath-charcoal/80 p-6 shadow-lg'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -130,7 +130,7 @@ const AnalyticsCard = ({ title, value, icon: Icon, gradient }) => (
                                 <p className='mb-1 text-xs font-semibold uppercase tracking-wide text-white/70'>{title}</p>
                                 <h3 className='text-3xl font-bold text-white'>{value}</h3>
                         </div>
-                        <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-payzone-gold'>
+                        <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-athath-gold'>
                                 <Icon className='h-6 w-6' />
                         </div>
                 </div>

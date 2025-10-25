@@ -25,7 +25,7 @@ const LoginPage = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8 }}
                         >
-                                <h2 className='mt-6 text-center text-3xl font-extrabold text-payzone-gold'>
+                                <h2 className='mt-6 text-center text-3xl font-extrabold text-athath-gold'>
                                         {t("auth.login.title")}
                                 </h2>
                         </motion.div>
@@ -36,7 +36,7 @@ const LoginPage = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                                <div className='rounded-xl border border-payzone-indigo/40 bg-white/5 py-8 px-4 shadow backdrop-blur-sm sm:px-10'>
+                                <div className='rounded-xl border border-athath-wood/40 bg-white/5 py-8 px-4 shadow backdrop-blur-sm sm:px-10'>
                                         <form onSubmit={handleSubmit} className='space-y-6'>
                                                 <div>
                                                         <label htmlFor='email' className='block text-sm font-medium text-white/80'>
@@ -52,7 +52,7 @@ const LoginPage = () => {
                                                                         required
                                                                         value={email}
                                                                         onChange={(e) => setEmail(e.target.value)}
-                                                                        className='block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 pr-10 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo sm:text-sm'
+                                                                        className='block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 pr-10 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood sm:text-sm'
                                                                         placeholder={t("auth.login.placeholderEmail")}
                                                                 />
                                                         </div>
@@ -72,7 +72,7 @@ const LoginPage = () => {
                                                                         required
                                                                         value={password}
                                                                         onChange={(e) => setPassword(e.target.value)}
-                                                                        className='block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 pr-10 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo sm:text-sm'
+                                                                        className='block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 pr-10 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood sm:text-sm'
                                                                         placeholder={t("auth.login.placeholderPassword")}
                                                                 />
                                                         </div>
@@ -80,7 +80,7 @@ const LoginPage = () => {
 
                                                 <button
                                                         type='submit'
-                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-payzone-gold px-4 py-2 text-sm font-semibold text-payzone-navy transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-payzone-indigo/60 disabled:opacity-50'
+                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-wood/60 disabled:opacity-50'
                                                         disabled={loading}
                                                 >
                                                         {loading ? (
@@ -99,7 +99,7 @@ const LoginPage = () => {
 
                                         <p className='mt-8 text-center text-sm text-white/70'>
                                                 {t("auth.login.prompt")} {" "}
-                                                <Link to='/signup' className='font-medium text-payzone-indigo transition duration-300 hover:text-payzone-gold'>
+                                                <Link to='/signup' className='font-medium text-athath-wood transition duration-300 hover:text-athath-gold'>
                                                         {t("auth.login.cta")}{" "}
                                                         <ArrowLeft className='mr-1 inline h-4 w-4' />
                                                 </Link>

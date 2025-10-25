@@ -135,16 +135,16 @@ const AdminOrders = () => {
 
         return (
                 <motion.div
-                        className='space-y-6 rounded-xl border border-payzone-indigo/40 bg-white/5 p-6 text-white shadow-lg backdrop-blur-sm'
+                        className='space-y-6 rounded-xl border border-athath-wood/40 bg-white/5 p-6 text-white shadow-lg backdrop-blur-sm'
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                 >
                         <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
-                                <h2 className='text-2xl font-semibold text-payzone-gold'>{t("admin.orders.title")}</h2>
+                                <h2 className='text-2xl font-semibold text-athath-gold'>{t("admin.orders.title")}</h2>
                                 <button
                                         type='button'
                                         onClick={fetchOrders}
-                                        className='inline-flex items-center rounded-lg border border-payzone-gold/40 px-4 py-2 text-sm font-medium text-payzone-gold transition hover:bg-payzone-gold/10'
+                                        className='inline-flex items-center rounded-lg border border-athath-gold/40 px-4 py-2 text-sm font-medium text-athath-gold transition hover:bg-athath-gold/10'
                                 >
                                         {t("admin.orders.refresh")}
                                 </button>
@@ -152,7 +152,7 @@ const AdminOrders = () => {
 
                         <div className='overflow-x-auto'>
                                 <table className='min-w-full divide-y divide-white/10 text-right text-sm text-white'>
-                                        <thead className='bg-payzone-navy/60 text-xs uppercase tracking-wide text-white/60'>
+                                        <thead className='bg-athath-charcoal/60 text-xs uppercase tracking-wide text-white/60'>
                                                 <tr>
                                                         <th className='px-4 py-3 font-medium'>{t("admin.orders.table.orderNumber")}</th>
                                                         <th className='px-4 py-3 font-medium'>{t("admin.orders.table.customer")}</th>
@@ -182,7 +182,7 @@ const AdminOrders = () => {
 
                                                         return (
                                                                 <tr key={order._id} className='bg-white/5 hover:bg-white/10'>
-                                                                        <td className='px-4 py-4 align-middle text-base font-semibold text-payzone-gold'>
+                                                                        <td className='px-4 py-4 align-middle text-base font-semibold text-athath-gold'>
                                                                                 {orderNumberDisplay}
                                                                         </td>
                                                                         <td className='px-4 py-4 align-middle'>
@@ -201,12 +201,12 @@ const AdminOrders = () => {
                                                                                         <span className='text-xs text-white/60'>
                                                                                                 {t("admin.orders.itemCount", { count: formattedCount })}
                                                                                         </span>
-                                                                                        <span className='text-[11px] text-payzone-gold/80'>{paymentLabel}</span>
+                                                                                        <span className='text-[11px] text-athath-gold/80'>{paymentLabel}</span>
                                                                                 </div>
                                                                         </td>
                                                                         <td className='px-4 py-4 align-middle'>
                                                                                 <select
-                                                                                        className='min-w-[10rem] rounded-lg border border-white/20 bg-payzone-navy/60 px-3 py-2 text-sm text-white focus:border-payzone-gold focus:outline-none'
+                                                                                        className='min-w-[10rem] rounded-lg border border-white/20 bg-athath-charcoal/60 px-3 py-2 text-sm text-white focus:border-athath-gold focus:outline-none'
                                                                                         value={order.status}
                                                                                         onChange={(event) => handleStatusChange(order, event.target.value)}
                                                                                         disabled={order.status === "cancelled" || updatingOrderId === order._id}

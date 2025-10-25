@@ -40,7 +40,7 @@ export default function SocialLinks() {
   if (items.length === 0) return null;
 
   return (
-    <div className="w-full flex flex-wrap items-center justify-center gap-3 mt-8">
+    <div className="mt-6 flex w-full flex-wrap items-center justify-center gap-3">
       {items.map(({ key, label, href, className }) => {
         const IconComponent = Icon[key];
 
@@ -50,7 +50,7 @@ export default function SocialLinks() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-white/10 text-white transition ${className}`}
+            className={`inline-flex items-center gap-2 rounded-[18px] border border-white/10 bg-white/10 px-4 py-2 text-white transition duration-200 hover:bg-white/20 ${className}`}
             aria-label={label}
           >
             <span className="inline-flex"><IconComponent /></span>

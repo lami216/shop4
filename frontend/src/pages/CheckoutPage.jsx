@@ -249,12 +249,12 @@ const CheckoutPage = () => {
                 <div className='py-10'>
                         <div className='mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 lg:flex-row'>
                                 <motion.section
-                                        className='w-full rounded-xl border border-payzone-indigo/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm'
+                                        className='w-full rounded-xl border border-athath-wood/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm'
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.4 }}
                                 >
-                                        <h1 className='mb-6 text-2xl font-bold text-payzone-gold'>{t("checkout.title")}</h1>
+                                        <h1 className='mb-6 text-2xl font-bold text-athath-gold'>{t("checkout.title")}</h1>
                                         <form className='space-y-5' onSubmit={handleSubmit}>
                                                 <div className='space-y-2'>
                                                         <label className='block text-sm font-medium text-white/80' htmlFor='customerName'>
@@ -265,7 +265,7 @@ const CheckoutPage = () => {
                                                                 type='text'
                                                                 value={customerName}
                                                                 onChange={(event) => setCustomerName(event.target.value)}
-                                                                className='w-full rounded-lg border border-payzone-indigo/40 bg-payzone-navy/60 px-4 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                                 placeholder={t("checkout.form.fullNamePlaceholder")}
                                                                 required
                                                         />
@@ -280,7 +280,7 @@ const CheckoutPage = () => {
                                                                 type='tel'
                                                                 value={whatsAppNumber}
                                                                 onChange={handleWhatsAppChange}
-                                                                className='w-full rounded-lg border border-payzone-indigo/40 bg-payzone-navy/60 px-4 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                                 placeholder={t("checkout.form.whatsAppPlaceholder")}
                                                                 required
                                                         />
@@ -296,7 +296,7 @@ const CheckoutPage = () => {
                                                                 value={address}
                                                                 onChange={(event) => setAddress(event.target.value)}
                                                                 rows={4}
-                                                                className='w-full rounded-lg border border-payzone-indigo/40 bg-payzone-navy/60 px-4 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                                 placeholder={t("checkout.form.addressPlaceholder")}
                                                                 required
                                                         />
@@ -305,7 +305,7 @@ const CheckoutPage = () => {
                                                 <motion.button
                                                         type='submit'
                                                         disabled={!isFormValid || isSubmitting}
-                                                        className='w-full rounded-lg bg-payzone-gold px-5 py-3 text-base font-semibold text-payzone-navy transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-payzone-indigo/40 disabled:cursor-not-allowed disabled:opacity-50'
+                                                        className='w-full rounded-lg bg-athath-gold px-5 py-3 text-base font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-wood/40 disabled:cursor-not-allowed disabled:opacity-50'
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.97 }}
                                                 >
@@ -315,12 +315,12 @@ const CheckoutPage = () => {
                                 </motion.section>
 
                                 <motion.aside
-                                        className='w-full rounded-xl border border-payzone-indigo/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm lg:max-w-sm'
+                                        className='w-full rounded-xl border border-athath-wood/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm lg:max-w-sm'
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.4, delay: 0.1 }}
                                 >
-                                        <h2 className='text-xl font-semibold text-payzone-gold'>{t("checkout.summary.title")}</h2>
+                                        <h2 className='text-xl font-semibold text-athath-gold'>{t("checkout.summary.title")}</h2>
                                         <ul className='mt-4 space-y-3 text-sm text-white/70'>
                                                 {cart.map((item) => {
                                                         const { price, discountedPrice, isDiscounted } = getProductPricing(item);
@@ -348,7 +348,7 @@ const CheckoutPage = () => {
                                                         <span>{formatMRU(subtotal)}</span>
                                                 </div>
                                                 {savings > 0 && (
-                                                        <div className='flex justify-between text-payzone-gold'>
+                                                        <div className='flex justify-between text-athath-gold'>
                                                                 <span>{t("checkout.summary.savings")}</span>
                                                                 <span>-{formatMRU(savings)}</span>
                                                         </div>

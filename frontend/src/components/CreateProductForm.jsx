@@ -390,18 +390,18 @@ const CreateProductForm = () => {
 
         return (
                 <motion.div
-                        className='mx-auto mb-8 max-w-xl rounded-xl border border-payzone-indigo/40 bg-white/5 p-8 shadow-lg backdrop-blur-sm'
+                        className='mx-auto mb-8 max-w-xl rounded-xl border border-athath-wood/40 bg-white/5 p-8 shadow-lg backdrop-blur-sm'
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                 >
                         <div className='mb-6 flex items-start justify-between gap-4'>
-                                <h2 className='text-2xl font-semibold text-payzone-gold'>{title}</h2>
+                                <h2 className='text-2xl font-semibold text-athath-gold'>{title}</h2>
                                 {isEditing && (
                                         <button
                                                 type='button'
                                                 onClick={resetForm}
-                                                className='inline-flex items-center gap-2 rounded-md border border-payzone-indigo/40 px-3 py-1 text-sm text-white transition hover:border-payzone-gold'
+                                                className='inline-flex items-center gap-2 rounded-md border border-athath-wood/40 px-3 py-1 text-sm text-white transition hover:border-athath-gold'
                                         >
                                                 <X className='h-4 w-4' />
                                                 {t("common.actions.cancel")}
@@ -420,7 +420,7 @@ const CreateProductForm = () => {
                                                 name='name'
                                                 value={formState.name}
                                                 onChange={(event) => setFormState({ ...formState, name: event.target.value })}
-                                                className='mt-1 block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                 required
                                         />
                                 </div>
@@ -437,7 +437,7 @@ const CreateProductForm = () => {
                                                         setFormState({ ...formState, description: event.target.value })
                                                 }
                                                 rows='3'
-                                                className='mt-1 block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                 required
                                         />
                                 </div>
@@ -453,12 +453,12 @@ const CreateProductForm = () => {
                                                 value={formState.price}
                                                 onChange={(event) => setFormState({ ...formState, price: event.target.value })}
                                                 step='0.01'
-                                                className='mt-1 block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                 required
                                         />
                                 </div>
 
-                                <div className='rounded-lg border border-payzone-indigo/40 bg-payzone-navy/50 p-4'>
+                                <div className='rounded-lg border border-athath-wood/40 bg-athath-charcoal/50 p-4'>
                                         <div className='flex items-start justify-between gap-4'>
                                                 <div>
                                                         <label
@@ -499,11 +499,11 @@ const CreateProductForm = () => {
                                                                 step='0.01'
                                                                 value={formState.discountPercentage}
                                                                 onChange={handleDiscountPercentageChange}
-                                                                className='mt-1 block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-white placeholder-white/40 focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                                 placeholder={t("admin.createProduct.placeholders.discountPercentage")}
                                                         />
                                                         {discountedPreviewPrice !== null && (
-                                                                <p className='text-xs text-payzone-gold'>
+                                                                <p className='text-xs text-athath-gold'>
                                                                         {t("admin.createProduct.fields.discountPreview", {
                                                                                 price: formatMRU(numericPricePreview || 0),
                                                                                 discount: formState.discountPercentage || "0",
@@ -526,7 +526,7 @@ const CreateProductForm = () => {
                                                 onChange={(event) =>
                                                         setFormState({ ...formState, category: event.target.value })
                                                 }
-                                                className='mt-1 block w-full rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-white focus:border-payzone-gold focus:outline-none focus:ring-2 focus:ring-payzone-indigo'
+                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
                                                 required
                                         >
                                                 <option value=''>
@@ -552,10 +552,10 @@ const CreateProductForm = () => {
                                         />
                                         <label
                                                 htmlFor='images'
-                                                className={`inline-flex items-center gap-2 rounded-md border border-payzone-indigo/40 bg-payzone-navy/60 px-3 py-2 text-sm font-medium text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-payzone-indigo ${
+                                                className={`inline-flex items-center gap-2 rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-sm font-medium text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-athath-wood ${
                                                         totalImages >= MAX_IMAGES
                                                                 ? "cursor-not-allowed opacity-60"
-                                                                : "cursor-pointer hover:border-payzone-gold hover:bg-payzone-navy/80"
+                                                                : "cursor-pointer hover:border-athath-gold hover:bg-athath-charcoal/80"
                                                 }`}
                                                 aria-disabled={totalImages >= MAX_IMAGES}
                                         >
@@ -583,9 +583,9 @@ const CreateProductForm = () => {
                                                                         key={item.key}
                                                                         className={`relative overflow-hidden rounded-lg border ${
                                                                                 isCover
-                                                                                        ? "border-payzone-gold"
-                                                                                        : "border-payzone-indigo/40"
-                                                                        } bg-payzone-navy/60`}
+                                                                                        ? "border-athath-gold"
+                                                                                        : "border-athath-wood/40"
+                                                                        } bg-athath-charcoal/60`}
                                                                 >
                                                                         <img
                                                                                 src={item.url}
@@ -598,7 +598,7 @@ const CreateProductForm = () => {
                                                                                         onClick={() => handleSetCover(item.type, item.index)}
                                                                                         className={`inline-flex items-center gap-1 ${
                                                                                                 isCover
-                                                                                                        ? "text-payzone-gold"
+                                                                                                        ? "text-athath-gold"
                                                                                                         : "text-white"
                                                                                         }`}
                                                                                 >
@@ -625,7 +625,7 @@ const CreateProductForm = () => {
 
                                 <button
                                         type='submit'
-                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-payzone-gold px-4 py-2 text-sm font-semibold text-payzone-navy transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-payzone-indigo/60 disabled:opacity-50'
+                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-wood/60 disabled:opacity-50'
                                         disabled={loading || totalImages === 0}
                                 >
                                         {loading ? (

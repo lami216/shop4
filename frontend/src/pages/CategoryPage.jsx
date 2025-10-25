@@ -75,7 +75,7 @@ const CategoryPage = () => {
                                         <SearchBar variant='category' categorySlug={category} />
                                 </div>
                                 <motion.h1
-                                        className='mb-8 text-center text-4xl font-bold text-payzone-gold sm:text-5xl'
+                                        className='mb-8 text-center text-4xl font-bold text-athath-gold sm:text-5xl'
                                         initial={{ opacity: 0, y: -20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8 }}
@@ -92,7 +92,7 @@ const CategoryPage = () => {
                                 {searchLoading && isFilteringCurrentCategory && (
                                         <div className='mb-6 flex justify-center'>
                                                 <motion.div
-                                                        className='rounded-full border-4 border-payzone-gold/40 border-t-payzone-gold p-6'
+                                                        className='rounded-full border-4 border-athath-gold/40 border-t-athath-gold p-6'
                                                         animate={{ rotate: 360 }}
                                                         transition={{ repeat: Infinity, ease: "linear", duration: 1 }}
                                                 />
@@ -100,7 +100,7 @@ const CategoryPage = () => {
                                 )}
 
                                 {showSearchEmptyState && (
-                                        <div className='mb-6 rounded-3xl border border-white/10 bg-payzone-navy p-6 text-center text-lg text-payzone-white/70'>
+                                        <div className='mb-6 rounded-3xl border border-white/10 bg-athath-charcoal p-6 text-center text-lg text-athath-white/70'>
                                                 {t("search.noResults", { query: searchQuery.trim() })}
                                         </div>
                                 )}
