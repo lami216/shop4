@@ -129,12 +129,12 @@ const CategoryManager = () => {
                                 <div className='mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
                                         <div>
                                                 <h2 className='text-2xl font-semibold text-athath-gold'>{t("categories.manager.title")}</h2>
-                                                <p className='text-sm text-white/70'>{t("categories.manager.description")}</p>
+                                                <p className='text-sm text-athath-ink/70'>{t("categories.manager.description")}</p>
                                         </div>
                                         {selectedCategory && (
                                                 <button
                                                         type='button'
-                                                        className='inline-flex items-center gap-2 rounded-md border border-athath-wood/40 px-3 py-1 text-sm text-white transition hover:border-athath-gold'
+                                                        className='inline-flex items-center gap-2 rounded-md border border-athath-gold/60 px-3 py-1 text-sm text-athath-ink transition hover:border-athath-gold hover:bg-white/10'
                                                         onClick={handleCancelEdit}
                                                 >
                                                         <X className='h-4 w-4' />
@@ -146,13 +146,13 @@ const CategoryManager = () => {
                                 <form onSubmit={handleSubmit} className='space-y-6'>
                                         <div className='grid gap-4 sm:grid-cols-2'>
                                                 <div>
-                                                        <label className='block text-sm font-medium text-white/80' htmlFor='category-name'>
+                                                        <label className='block text-sm font-medium text-athath-gold' htmlFor='category-name'>
                                                                 {t("categories.manager.form.name")}
                                                         </label>
                                                         <input
                                                                 id='category-name'
                                                                 type='text'
-                                                                className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                                className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                                 value={formState.name}
                                                                 onChange={(event) => setFormState((previous) => ({
                                                                         ...previous,
@@ -162,7 +162,7 @@ const CategoryManager = () => {
                                                         />
                                                 </div>
                                                 <div>
-                                                        <label className='block text-sm font-medium text-white/80'>
+                                                        <label className='block text-sm font-medium text-athath-gold'>
                                                                 {t("categories.manager.form.image")}
                                                         </label>
                                                         <div className='mt-1 flex items-center gap-3'>
@@ -175,7 +175,7 @@ const CategoryManager = () => {
                                                                 />
                                                                 <label
                                                                         htmlFor='category-image'
-                                                                        className='inline-flex cursor-pointer items-center gap-2 rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-sm text-white transition hover:border-athath-gold hover:bg-athath-charcoal/80'
+                                                                        className='inline-flex cursor-pointer items-center gap-2 rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-sm text-athath-ink transition hover:border-athath-gold hover:bg-athath-input/90'
                                                                 >
                                                                         <ImagePlus className='h-4 w-4' />
                                                                         {formState.imagePreview
@@ -190,18 +190,18 @@ const CategoryManager = () => {
                                                                         />
                                                                 )}
                                                         </div>
-                                                        <p className='mt-2 text-xs text-white/60'>{t("categories.manager.form.imageHint")}</p>
+                                                        <p className='mt-2 text-xs text-athath-ink/60'>{t("categories.manager.form.imageHint")}</p>
                                                 </div>
                                         </div>
 
                                         <div>
-                                                <label className='block text-sm font-medium text-white/80' htmlFor='category-description'>
+                                                <label className='block text-sm font-medium text-athath-gold' htmlFor='category-description'>
                                                         {t("categories.manager.form.description")}
                                                 </label>
                                                 <textarea
                                                         id='category-description'
                                                         rows={3}
-                                                        className='mt-1 block w-full rounded-md border border-athath-wood/40 bg-athath-charcoal/60 px-3 py-2 text-white focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                        className='mt-1 block w-full rounded-md border border-athath-gold/60 bg-athath-input px-3 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                         value={formState.description}
                                                         onChange={(event) => setFormState((previous) => ({
                                                                 ...previous,
@@ -212,7 +212,7 @@ const CategoryManager = () => {
 
                                         <button
                                                 type='submit'
-                                                className='inline-flex items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 font-semibold text-athath-charcoal transition hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-wood disabled:opacity-50'
+                                                className='inline-flex items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 font-semibold text-athath-ink transition hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-gold disabled:opacity-50'
                                                 disabled={loading}
                                         >
                                                 <Save className='h-4 w-4' />
@@ -226,7 +226,7 @@ const CategoryManager = () => {
                         <div className='rounded-xl border border-athath-wood/40 bg-white/5 p-6 shadow-lg backdrop-blur-sm'>
                                 <h3 className='mb-4 text-xl font-semibold text-athath-gold'>{t("categories.manager.list.title")}</h3>
                                 {categories.length === 0 ? (
-                                        <p className='text-sm text-white/70'>{t("categories.manager.list.empty")}</p>
+                                        <p className='text-sm text-athath-ink/70'>{t("categories.manager.list.empty")}</p>
                                 ) : (
                                         <ul className='space-y-4'>
                                                 {categories.map((category) => (

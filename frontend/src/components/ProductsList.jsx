@@ -109,7 +109,7 @@ const ProductsList = ({ onEdit }) => {
                                                                         onClick={() => toggleFeaturedProduct(product._id)}
                                                                         className={`rounded-full p-1 transition-colors duration-200 ${
                                                                                 product.isFeatured
-                                                                                        ? "bg-athath-gold text-athath-charcoal"
+                                                                                        ? "bg-athath-gold text-athath-ink"
                                                                                         : "bg-athath-charcoal/60 text-white/70"
                                                                         } hover:ring-2 hover:ring-athath-wood/40`}
                                                                 >

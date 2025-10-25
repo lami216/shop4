@@ -257,7 +257,7 @@ const CheckoutPage = () => {
                                         <h1 className='mb-6 text-2xl font-bold text-athath-gold'>{t("checkout.title")}</h1>
                                         <form className='space-y-5' onSubmit={handleSubmit}>
                                                 <div className='space-y-2'>
-                                                        <label className='block text-sm font-medium text-white/80' htmlFor='customerName'>
+                                                        <label className='block text-sm font-medium text-athath-gold' htmlFor='customerName'>
                                                                 {t("checkout.form.fullName")}
                                                         </label>
                                                         <input
@@ -265,14 +265,14 @@ const CheckoutPage = () => {
                                                                 type='text'
                                                                 value={customerName}
                                                                 onChange={(event) => setCustomerName(event.target.value)}
-                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                                className='w-full rounded-lg border border-athath-gold/60 bg-athath-input px-4 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                                 placeholder={t("checkout.form.fullNamePlaceholder")}
                                                                 required
                                                         />
                                                 </div>
 
                                                 <div className='space-y-2'>
-                                                        <label className='block text-sm font-medium text-white/80' htmlFor='whatsAppNumber'>
+                                                        <label className='block text-sm font-medium text-athath-gold' htmlFor='whatsAppNumber'>
                                                                 {t("checkout.form.whatsApp")}
                                                         </label>
                                                         <input
@@ -280,7 +280,7 @@ const CheckoutPage = () => {
                                                                 type='tel'
                                                                 value={whatsAppNumber}
                                                                 onChange={handleWhatsAppChange}
-                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                                className='w-full rounded-lg border border-athath-gold/60 bg-athath-input px-4 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                                 placeholder={t("checkout.form.whatsAppPlaceholder")}
                                                                 required
                                                         />
@@ -288,7 +288,7 @@ const CheckoutPage = () => {
                                                 </div>
 
                                                 <div className='space-y-2'>
-                                                        <label className='block text-sm font-medium text-white/80' htmlFor='address'>
+                                                        <label className='block text-sm font-medium text-athath-gold' htmlFor='address'>
                                                                 {t("checkout.form.address")}
                                                         </label>
                                                         <textarea
@@ -296,7 +296,7 @@ const CheckoutPage = () => {
                                                                 value={address}
                                                                 onChange={(event) => setAddress(event.target.value)}
                                                                 rows={4}
-                                                                className='w-full rounded-lg border border-athath-wood/40 bg-athath-charcoal/60 px-4 py-2 text-white placeholder-white/40 focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-wood'
+                                                                className='w-full rounded-lg border border-athath-gold/60 bg-athath-input px-4 py-2 text-athath-ink placeholder:text-athath-placeholder focus:border-athath-gold focus:outline-none focus:ring-2 focus:ring-athath-gold/40'
                                                                 placeholder={t("checkout.form.addressPlaceholder")}
                                                                 required
                                                         />
@@ -305,7 +305,7 @@ const CheckoutPage = () => {
                                                 <motion.button
                                                         type='submit'
                                                         disabled={!isFormValid || isSubmitting}
-                                                        className='w-full rounded-lg bg-athath-gold px-5 py-3 text-base font-semibold text-athath-charcoal transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-wood/40 disabled:cursor-not-allowed disabled:opacity-50'
+                                                        className='w-full rounded-lg bg-athath-gold px-5 py-3 text-base font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-gold/40 disabled:cursor-not-allowed disabled:opacity-50'
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.97 }}
                                                 >

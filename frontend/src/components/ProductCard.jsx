@@ -46,21 +46,21 @@ const ProductCard = ({ product }) => {
                                                 alt={product.name}
                                         />
                                 ) : (
-                                        <div className='flex h-full w-full items-center justify-center bg-athath-cream text-sm text-athath-charcoal/60'>
+                                        <div className='flex h-full w-full items-center justify-center bg-athath-cream text-sm text-athath-ink/60'>
                                                 {t("common.status.noImage")}
                                         </div>
                                 )}
                                 <div className='pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-athath-cream/80 via-white/60 to-transparent' />
                         </Link>
 
-                        <div className='mt-4 flex flex-1 flex-col px-5 pb-5 text-athath-charcoal'>
+                        <div className='mt-4 flex flex-1 flex-col px-5 pb-5 text-athath-ink'>
                                 <Link to={`/products/${product._id}`} className='block transition-colors duration-300 hover:text-athath-gold'>
                                         <h5 className='text-lg font-semibold tracking-tight'>{product.name}</h5>
                                 </Link>
                                 <div className='mt-3 flex flex-wrap items-baseline gap-2'>
                                         {isDiscounted ? (
                                                 <>
-                                                        <span className='max-w-full break-words text-sm text-athath-charcoal/50 line-through'>{formatMRU(price)}</span>
+                                                        <span className='max-w-full break-words text-sm text-athath-ink/50 line-through'>{formatMRU(price)}</span>
                                                         <span className='max-w-full break-words text-lg font-bold text-athath-gold'>{formatMRU(discountedPrice)}</span>
                                                 </>
                                         ) : (
@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
                                         )}
                                 </div>
                                 <button
-                                        className='mt-auto flex items-center justify-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#b89322] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
+                                        className='mt-auto flex items-center justify-center gap-2 rounded-[18px] bg-athath-gold px-5 py-2 text-sm font-medium text-athath-ink transition-colors duration-300 hover:bg-[#b89322] focus:outline-none focus:ring-4 focus:ring-athath-gold/40'
                                         onClick={handleAddToCart}
                                 >
                                         <ShoppingCart size={20} />

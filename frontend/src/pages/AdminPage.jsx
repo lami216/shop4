@@ -51,7 +51,7 @@ const AdminPage = () => {
                                                         onClick={() => setActiveTab(tab.id)}
                                                         className={`mx-2 flex items-center rounded-md px-4 py-2 transition-colors duration-200 ${
                                                                 activeTab === tab.id
-                                                                        ? "bg-athath-gold text-athath-charcoal"
+                                                                        ? "bg-athath-gold text-athath-ink"
                                                                         : "bg-white/10 text-white/80 hover:bg-white/20"
                                                         }`}
                                                 >
