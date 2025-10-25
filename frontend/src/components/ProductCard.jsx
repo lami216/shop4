@@ -50,7 +50,6 @@ const ProductCard = ({ product }) => {
                                                 {t("common.status.noImage")}
                                         </div>
                                 )}
-                                <div className='pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-athath-cream/80 via-white/60 to-transparent' />
                         </Link>
 
                         <div className='mt-4 flex flex-1 flex-col px-5 pb-5 text-athath-ink'>
