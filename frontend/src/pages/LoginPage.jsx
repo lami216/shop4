@@ -80,7 +80,7 @@ const LoginPage = () => {
 
                                                 <button
                                                         type='submit'
-                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-gold/60 disabled:opacity-50'
+                                                        className='flex w-full items-center justify-center gap-2 rounded-md bg-athath-gold px-4 py-2 text-sm font-semibold text-athath-ink on-gold transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-2 focus:ring-athath-gold/60 disabled:opacity-50'
                                                         disabled={loading}
                                                 >
                                                         {loading ? (

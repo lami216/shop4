@@ -9,9 +9,11 @@
         --text-dark: #1c1c1c;
         --text-light: #ffffff;
         --accent: #c9a227;
-        --input-bg: #b8b3a5;
+        --bg-card: #b8b3a5;
+        --bg-dark: #0f0f10;
+        --input-bg: var(--bg-card);
         --placeholder: #7a7a7a;
-        --focus-outline: #e2c45a;
+        --focus-outline: rgba(201, 162, 39, 0.25);
         --transition-base: 200ms ease-in-out;
 }
 
@@ -31,8 +33,39 @@ body {
         h3,
         h4,
         h5,
-        h6 {
-                color: var(--text-dark);
+        h6,
+        .section-title,
+        .admin-title,
+        .tab,
+        .btn-link,
+        .breadcrumb,
+        .nav-link {
+                color: var(--text-dark) !important;
+        }
+
+        :is(
+                .dark,
+                .bg-dark,
+                .is-dark,
+                [class*='bg-athath-charcoal'],
+                [class*='bg-black'],
+                [class*='bg-[#0f0f10'],
+                [class*='bg-athath-wood']
+        ) :is(
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                .section-title,
+                .admin-title,
+                .tab,
+                .btn-link,
+                .breadcrumb,
+                .nav-link
+        ) {
+                color: var(--text-light) !important;
         }
 
         :is(label, legend) {
@@ -44,7 +77,7 @@ body {
         select {
                 background-color: var(--input-bg) !important;
                 color: var(--text-dark) !important;
-                border-color: var(--accent) !important;
+                border: 1px solid var(--accent) !important;
                 transition: border-color var(--transition-base), box-shadow var(--transition-base),
                         background-color var(--transition-base), color var(--transition-base);
         }
@@ -59,9 +92,8 @@ body {
         textarea:focus,
         select:focus {
                 outline: none;
-                border-color: var(--focus-outline) !important;
-                box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-outline) 35%, transparent) inset,
-                        0 0 0 2px color-mix(in srgb, var(--focus-outline) 65%, transparent);
+                border-color: var(--accent) !important;
+                box-shadow: 0 0 0 3px var(--focus-outline);
         }
 
         input:not([type='checkbox']):not([type='radio']):not([type='range']):focus-visible,
@@ -69,6 +101,72 @@ body {
         select:focus-visible {
                 outline: none;
         }
+}
+
+.tab,
+.btn-link,
+.breadcrumb,
+.nav-link {
+        transition: color var(--transition-base), border-color var(--transition-base),
+                background-color var(--transition-base), box-shadow var(--transition-base);
+        color: var(--text-dark) !important;
+}
+
+.admin-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        border: none;
+        border-bottom: 2px solid transparent;
+        background-color: transparent !important;
+        color: var(--text-dark) !important;
+        padding: 0.5rem 1rem;
+        transition: border-color var(--transition-base), color var(--transition-base),
+                background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.admin-tab--active {
+        border-bottom-color: var(--accent);
+}
+
+.admin-tab:hover,
+.admin-tab:focus,
+.admin-tab:active {
+        color: var(--text-dark) !important;
+        background-color: transparent !important;
+        border-bottom-color: color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.tab:hover,
+.tab:focus,
+.tab:active,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active,
+.breadcrumb:hover,
+.breadcrumb:focus,
+.breadcrumb:active,
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+        color: var(--text-dark) !important;
+}
+
+:is(.dark, .bg-dark, .is-dark)
+        :is(.tab, .btn-link, .breadcrumb, .nav-link):is(:hover, :focus, :active),
+:is(.dark, .bg-dark, .is-dark) :is(.tab, .btn-link, .breadcrumb, .nav-link) {
+        color: var(--text-light) !important;
+}
+
+.on-gold {
+        color: var(--text-dark) !important;
+}
+
+.on-gold:hover,
+.on-gold:focus,
+.on-gold:active {
+        color: var(--text-dark) !important;
 }
 
 .discount-switch {

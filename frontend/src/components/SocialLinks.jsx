@@ -19,14 +19,25 @@ const Icon = {
   ),
 };
 
+const DEFAULT_WHATSAPP_LINK = "https://wa.me/22241530965";
+
 export default function SocialLinks() {
   const [links, setLinks] = useState(null);
 
   useEffect(() => {
     fetch("/api/public-config")
       .then((r) => r.json())
-      .then((data) => setLinks(data))
-      .catch(() => setLinks({}));
+      .then((data) =>
+        setLinks({
+          ...data,
+          whatsapp: DEFAULT_WHATSAPP_LINK,
+        })
+      )
+      .catch(() =>
+        setLinks({
+          whatsapp: DEFAULT_WHATSAPP_LINK,
+        })
+      );
   }, []);
 
   if (!links) return null;
@@ -34,7 +45,12 @@ export default function SocialLinks() {
   const items = [
     { key: "facebook", label: "Facebook", href: links.facebook, className: "hover:bg-[#1877F2]" },
     { key: "tiktok", label: "TikTok", href: links.tiktok, className: "hover:bg-black" },
-    { key: "whatsapp", label: "WhatsApp", href: links.whatsapp, className: "hover:bg-[#25D366]" },
+    {
+      key: "whatsapp",
+      label: "WhatsApp",
+      href: links.whatsapp || DEFAULT_WHATSAPP_LINK,
+      className: "hover:bg-[#25D366]",
+    },
   ].filter((x) => !!x.href);
 
   if (items.length === 0) return null;

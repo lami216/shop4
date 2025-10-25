@@ -142,7 +142,7 @@ const CheckoutPage = () => {
                         requestPayload.couponCode = coupon.code;
                 }
 
-                const DEFAULT_STORE_WHATSAPP_NUMBER = "22231117700";
+                const DEFAULT_STORE_WHATSAPP_NUMBER = "22241530965";
                 const envStoreNumber = import.meta.env.VITE_STORE_WHATSAPP_NUMBER;
                 const storeNumber = envStoreNumber?.replace(/\D/g, "") || DEFAULT_STORE_WHATSAPP_NUMBER;
 
@@ -305,7 +305,7 @@ const CheckoutPage = () => {
                                                 <motion.button
                                                         type='submit'
                                                         disabled={!isFormValid || isSubmitting}
-                                                        className='w-full rounded-lg bg-athath-gold px-5 py-3 text-base font-semibold text-athath-ink transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-gold/40 disabled:cursor-not-allowed disabled:opacity-50'
+                                                        className='w-full rounded-lg bg-athath-gold px-5 py-3 text-base font-semibold text-athath-ink on-gold transition duration-300 hover:bg-[#b8873d] focus:outline-none focus:ring-4 focus:ring-athath-gold/40 disabled:cursor-not-allowed disabled:opacity-50'
                                                         whileHover={{ scale: 1.02 }}
                                                         whileTap={{ scale: 0.97 }}
                                                 >

@@ -12,10 +12,11 @@ const isValidUrl = (url) => {
 };
 
 router.get("/", (req, res) => {
+  const DEFAULT_WHATSAPP_LINK = "https://wa.me/22241530965";
   const cfg = {
     facebook: process.env.FACEBOOK_URL,
     tiktok: process.env.TIKTOK_URL,
-    whatsapp: process.env.WHATSAPP_URL,
+    whatsapp: DEFAULT_WHATSAPP_LINK,
   };
   const safe = Object.fromEntries(
     Object.entries(cfg).filter(([_, v]) => isValidUrl(v))
