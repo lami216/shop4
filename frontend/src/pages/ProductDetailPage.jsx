@@ -140,7 +140,7 @@ const ProductDetailPage = () => {
                                                         )}
                                                 </div>
                                                 {galleryImages.length > 1 && (
-                                                        <div className='mt-4 flex gap-3 overflow-x-auto pb-2'>
+                                                        <div className='mt-6 flex flex-wrap gap-4'>
                                                                 {galleryImages.map((imageUrl, index) => {
                                                                         const isActive = imageUrl === activeImage;
                                                                         const localizedIndex = new Intl.NumberFormat("ar").format(index + 1);
@@ -149,14 +149,18 @@ const ProductDetailPage = () => {
                                                                                         key={`${imageUrl}-${index}`}
                                                                                         type='button'
                                                                                         onClick={() => setActiveImage(imageUrl)}
-                                                                                        className={`h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border transition-colors duration-200 ${
+                                                                                        className={`flex-shrink-0 overflow-hidden rounded-xl border-2 transition-colors duration-200 h-32 w-32 sm:h-40 sm:w-40 lg:h-56 lg:w-56 ${
                                                                                                 isActive
                                                                                                         ? "border-athath-gold"
                                                                                                         : "border-transparent"
                                                                                         }`}
                                                                                         aria-label={t("products.detail.viewImage", { index: localizedIndex })}
                                                                                 >
-                                                                                        <img src={imageUrl} alt='' className='h-full w-full object-cover' />
+                                                                                        <img
+                                                                                                src={imageUrl}
+                                                                                                alt=''
+                                                                                                className='h-full w-full object-cover'
+                                                                                        />
                                                                                 </button>
                                                                         );
                                                                 })}
