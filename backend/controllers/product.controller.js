@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { redis } from "../lib/redis.js";
-import cloudinary from "../lib/cloudinary.js";
+import { uploadImage, deleteImage } from "../lib/imagekit.js";
 import Product from "../models/product.model.js";
 
 const toBoolean = (value) => {
@@ -48,6 +48,72 @@ const normalizeDiscountSettings = ({
         return { isDiscounted: false, discountPercentage: 0 };
 };
 
+const normalizeStoredImage = (image) => {
+        if (!image) return null;
+
+        if (typeof image === "string") {
+                const trimmed = image.trim();
+                if (!trimmed) return null;
+                return { url: trimmed, fileId: null, legacyPublicId: null };
+        }
+
+        if (typeof image !== "object") {
+                return null;
+        }
+
+        const url = typeof image.url === "string" ? image.url : "";
+        if (!url) {
+                return null;
+        }
+
+        const fileId = typeof image.fileId === "string" && image.fileId ? image.fileId : null;
+        const legacyPublicId =
+                typeof image.public_id === "string" && image.public_id ? image.public_id : null;
+
+        return { url, fileId, legacyPublicId };
+};
+
+const extractImageIdentifier = (image) => {
+        if (!image) return null;
+        if (typeof image === "string") {
+                const trimmed = image.trim();
+                return trimmed ? trimmed : null;
+        }
+        if (typeof image === "object") {
+                if (typeof image.fileId === "string" && image.fileId.trim()) {
+                        return image.fileId.trim();
+                }
+                if (typeof image.public_id === "string" && image.public_id.trim()) {
+                        return image.public_id.trim();
+                }
+        }
+        return null;
+};
+
+const mapImagesForResponse = (images, fallbackImage) => {
+        const normalizedImages = Array.isArray(images)
+                ? images
+                          .map((image) => normalizeStoredImage(image))
+                          .filter(Boolean)
+                : [];
+
+        if (!normalizedImages.length && typeof fallbackImage === "string" && fallbackImage.trim()) {
+                normalizedImages.push({ url: fallbackImage.trim(), fileId: null, legacyPublicId: null });
+        }
+
+        return normalizedImages.map(({ url, fileId, legacyPublicId }) => {
+                const identifier = fileId || legacyPublicId || null;
+                const payload = { url };
+                if (fileId) {
+                        payload.fileId = fileId;
+                }
+                if (identifier) {
+                        payload.public_id = identifier;
+                }
+                return payload;
+        });
+};
+
 const finalizeProductPayload = (product) => {
         if (!product) return product;
 
@@ -59,8 +125,16 @@ const finalizeProductPayload = (product) => {
                 ? Number((price - price * (effectivePercentage / 100)).toFixed(2))
                 : price;
 
+        const responseImages = mapImagesForResponse(product.images, product.image);
+        const coverImageUrl =
+                typeof product.image === "string" && product.image.trim()
+                        ? product.image
+                        : responseImages[0]?.url || "";
+
         return {
                 ...product,
+                image: coverImageUrl,
+                images: responseImages,
                 isDiscounted,
                 discountPercentage: effectivePercentage,
                 discountedPrice,
@@ -237,28 +311,26 @@ export const createProduct = async (req, res) => {
 
                 try {
                         for (const base64Image of sanitizedImages) {
-                                const uploadResult = await cloudinary.uploader.upload(base64Image, {
-                                        folder: "products",
-                                });
+                                const uploadResult = await uploadImage(base64Image, "products");
 
                                 uploadedImages.push({
-                                        url: uploadResult.secure_url,
-                                        public_id: uploadResult.public_id,
+                                        url: uploadResult.url,
+                                        fileId: uploadResult.fileId ?? null,
+                                        legacyPublicId: null,
                                 });
                         }
                 } catch (uploadError) {
                         if (uploadedImages.length) {
-                                const uploadedPublicIds = uploadedImages
-                                        .map((image) => image.public_id)
-                                        .filter(Boolean);
-
-                                try {
-                                        await cloudinary.api.delete_resources(uploadedPublicIds);
-                                } catch (cleanupError) {
-                                        console.log(
-                                                "Error cleaning up uploaded images after failure",
-                                                cleanupError
-                                        );
+                                for (const image of uploadedImages) {
+                                        if (!image.fileId) continue;
+                                        try {
+                                                await deleteImage(image.fileId);
+                                        } catch (cleanupError) {
+                                                console.log(
+                                                        "Error cleaning up uploaded images after failure",
+                                                        cleanupError.message
+                                                );
+                                        }
                                 }
                         }
 
@@ -270,8 +342,17 @@ export const createProduct = async (req, res) => {
                         name: trimmedName,
                         description: trimmedDescription,
                         price: numericPrice,
-                        image: uploadedImages[0]?.url,
-                        images: uploadedImages,
+                        image: uploadedImages[0]?.url || "",
+                        images: uploadedImages.map(({ url, fileId, legacyPublicId }) => {
+                                const payload = { url };
+                                if (fileId) {
+                                        payload.fileId = fileId;
+                                }
+                                if (legacyPublicId) {
+                                        payload.public_id = legacyPublicId;
+                                }
+                                return payload;
+                        }),
                         category: normalizedCategory,
                         categorySlug: normalizedCategory,
                         isDiscounted: discountSettings.isDiscounted,
@@ -325,26 +406,43 @@ export const updateProduct = async (req, res) => {
                 }
 
                 const existingImageIds = Array.isArray(existingImages)
-                        ? existingImages
-                                  .map((image) =>
-                                          typeof image === "string"
-                                                  ? image
-                                                  : typeof image?.public_id === "string"
-                                                          ? image.public_id
-                                                          : null
-                                  )
-                                  .filter(Boolean)
+                        ? existingImages.map((image) => extractImageIdentifier(image)).filter(Boolean)
                         : [];
 
                 const sanitizedNewImages = Array.isArray(newImages)
                         ? newImages.filter((image) => typeof image === "string" && image.trim().length > 0)
                         : [];
 
-                const currentImages = Array.isArray(product.images) ? product.images : [];
-                const retainedImages = currentImages.filter((image) => existingImageIds.includes(image.public_id));
-                const removedImages = currentImages.filter((image) => !existingImageIds.includes(image.public_id));
+                const currentImagesRaw = Array.isArray(product.images) ? product.images : [];
+                const normalizedCurrentImages = currentImagesRaw
+                        .map((image) => normalizeStoredImage(image))
+                        .filter(Boolean);
 
-                const totalImagesCount = retainedImages.length + sanitizedNewImages.length;
+                const imageLookup = new Map();
+                for (const image of normalizedCurrentImages) {
+                        const identifiers = [];
+                        if (image.fileId) identifiers.push(image.fileId);
+                        if (image.legacyPublicId) identifiers.push(image.legacyPublicId);
+                        if (!identifiers.length && image.url) identifiers.push(image.url);
+
+                        for (const identifier of identifiers) {
+                                imageLookup.set(identifier, image);
+                        }
+                }
+
+                const seenRetained = new Set();
+                const orderedRetainedImages = [];
+                for (const identifier of existingImageIds) {
+                        const image = imageLookup.get(identifier);
+                        if (image && !seenRetained.has(image)) {
+                                orderedRetainedImages.push(image);
+                                seenRetained.add(image);
+                        }
+                }
+
+                const removedImages = normalizedCurrentImages.filter((image) => !seenRetained.has(image));
+
+                const totalImagesCount = orderedRetainedImages.length + sanitizedNewImages.length;
 
                 if (totalImagesCount === 0) {
                         return res.status(400).json({ message: "At least one product image is required" });
@@ -355,18 +453,15 @@ export const updateProduct = async (req, res) => {
                 }
 
                 if (removedImages.length) {
-                        const publicIdsToDelete = removedImages
-                                .map((image) => image.public_id)
-                                .filter(Boolean);
-
-                        if (publicIdsToDelete.length) {
+                        for (const image of removedImages) {
+                                if (!image.fileId) continue;
                                 try {
-                                        await cloudinary.api.delete_resources(publicIdsToDelete, {
-                                                type: "upload",
-                                                resource_type: "image",
-                                        });
-                                } catch (cloudinaryError) {
-                                        console.log("Error deleting removed images from Cloudinary", cloudinaryError);
+                                        await deleteImage(image.fileId);
+                                } catch (imagekitError) {
+                                        console.log(
+                                                "Error deleting removed images from ImageKit",
+                                                imagekitError.message
+                                        );
                                 }
                         }
                 }
@@ -375,42 +470,31 @@ export const updateProduct = async (req, res) => {
 
                 for (const base64Image of sanitizedNewImages) {
                         try {
-                                const uploadResult = await cloudinary.uploader.upload(base64Image, {
-                                        folder: "products",
-                                });
+                                const uploadResult = await uploadImage(base64Image, "products");
 
                                 uploadedImages.push({
-                                        url: uploadResult.secure_url,
-                                        public_id: uploadResult.public_id,
+                                        url: uploadResult.url,
+                                        fileId: uploadResult.fileId ?? null,
+                                        legacyPublicId: null,
                                 });
                         } catch (uploadError) {
                                 if (uploadedImages.length) {
-                                        const uploadedPublicIds = uploadedImages
-                                                .map((image) => image.public_id)
-                                                .filter(Boolean);
-
-                                        try {
-                                                await cloudinary.api.delete_resources(uploadedPublicIds);
-                                        } catch (cleanupError) {
-                                                console.log(
-                                                        "Error cleaning up uploaded images after update failure",
-                                                        cleanupError
-                                                );
+                                        for (const image of uploadedImages) {
+                                                if (!image.fileId) continue;
+                                                try {
+                                                        await deleteImage(image.fileId);
+                                                } catch (cleanupError) {
+                                                        console.log(
+                                                                "Error cleaning up uploaded images after update failure",
+                                                                cleanupError.message
+                                                        );
+                                                }
                                         }
                                 }
 
                                 throw uploadError;
                         }
                 }
-
-                const imageLookup = retainedImages.reduce((accumulator, image) => {
-                        accumulator[image.public_id] = image;
-                        return accumulator;
-                }, {});
-
-                const orderedRetainedImages = existingImageIds
-                        .map((publicId) => imageLookup[publicId])
-                        .filter(Boolean);
 
                 const coverPreference =
                         cover && typeof cover === "object" ? cover : { source: null, index: 0 };
@@ -462,8 +546,19 @@ export const updateProduct = async (req, res) => {
                 product.categoryId = mongoose.Types.ObjectId.isValid(nextCategory)
                         ? new mongoose.Types.ObjectId(nextCategory)
                         : null;
-                product.images = finalImages;
-                product.image = finalImages[0]?.url || product.image;
+                const storedFinalImages = finalImages.map(({ url, fileId, legacyPublicId }) => {
+                        const payload = { url };
+                        if (fileId) {
+                                payload.fileId = fileId;
+                        }
+                        if (legacyPublicId) {
+                                payload.public_id = legacyPublicId;
+                        }
+                        return payload;
+                });
+
+                product.images = storedFinalImages;
+                product.image = storedFinalImages[0]?.url || product.image;
                 product.isDiscounted = discountSettings.isDiscounted;
                 product.discountPercentage = discountSettings.discountPercentage;
 
@@ -488,20 +583,16 @@ export const deleteProduct = async (req, res) => {
                         return res.status(404).json({ message: "Product not found" });
                 }
 
-                const publicIds = Array.isArray(product.images)
-                        ? product.images
-                                  .map((image) => (typeof image === "object" ? image.public_id : null))
-                                  .filter(Boolean)
+                const normalizedImages = Array.isArray(product.images)
+                        ? product.images.map((image) => normalizeStoredImage(image)).filter(Boolean)
                         : [];
 
-                if (publicIds.length) {
+                for (const image of normalizedImages) {
+                        if (!image.fileId) continue;
                         try {
-                                await cloudinary.api.delete_resources(publicIds, {
-                                        type: "upload",
-                                        resource_type: "image",
-                                });
-                        } catch (cloudinaryError) {
-                                console.log("Error deleting images from Cloudinary", cloudinaryError);
+                                await deleteImage(image.fileId);
+                        } catch (imagekitError) {
+                                console.log("Error deleting images from ImageKit", imagekitError.message);
                         }
                 }
 
