@@ -58,25 +58,47 @@ export const useProductStore = create((set, get) => ({
         },
         fetchAllProducts: async () => {
                 set({ loading: true });
-                try {
-                        const data = await apiClient.get(`/products`);
-                        get().setProducts(data.products);
-                        set({ loading: false });
-                } catch (error) {
-                        set({ error: translate("toast.fetchProductsError"), loading: false });
-                        toast.error(error.response?.data?.message || translate("toast.fetchProductsError"));
+                let hadError = false;
+                let resolvedMessage = translate("toast.fetchProductsError");
+                const data = await apiClient.get(`/products`, {
+                        suppressError: true,
+                        errorFallback: { products: [] },
+                        onError: (error) => {
+                                hadError = true;
+                                resolvedMessage =
+                                        error.response?.data?.message || translate("toast.fetchProductsError");
+                                toast.error(resolvedMessage);
+                        },
+                });
+                if (hadError) {
+                        set({ error: resolvedMessage, loading: false });
+                        return [];
                 }
+                get().setProducts(Array.isArray(data?.products) ? data.products : []);
+                set({ loading: false, error: null });
+                return data?.products ?? [];
         },
         fetchProductsByCategory: async (category) => {
                 set({ loading: true });
-                try {
-                        const data = await apiClient.get(`/products/category/${category}`);
-                        get().setProducts(data.products);
-                        set({ loading: false });
-                } catch (error) {
-                        set({ error: translate("toast.fetchProductsError"), loading: false });
-                        toast.error(error.response?.data?.message || translate("toast.fetchProductsError"));
+                let hadError = false;
+                let resolvedMessage = translate("toast.fetchProductsError");
+                const data = await apiClient.get(`/products/category/${category}`, {
+                        suppressError: true,
+                        errorFallback: { products: [] },
+                        onError: (error) => {
+                                hadError = true;
+                                resolvedMessage =
+                                        error.response?.data?.message || translate("toast.fetchProductsError");
+                                toast.error(resolvedMessage);
+                        },
+                });
+                if (hadError) {
+                        set({ error: resolvedMessage, loading: false });
+                        return [];
                 }
+                get().setProducts(Array.isArray(data?.products) ? data.products : []);
+                set({ loading: false, error: null });
+                return data?.products ?? [];
         },
         fetchProductById: async (productId) => {
                 const existingProduct = get().products.find((product) => product._id === productId);
@@ -144,13 +166,24 @@ export const useProductStore = create((set, get) => ({
         },
         fetchFeaturedProducts: async () => {
                 set({ loading: true });
-                try {
-                        const data = await apiClient.get(`/products/featured`);
-                        get().setProducts(data);
-                        set({ loading: false });
-                } catch (error) {
-                        set({ error: translate("toast.fetchProductsError"), loading: false });
-                        console.log("Error fetching featured products:", error);
+                let hadError = false;
+                const fallbackMessage = translate("toast.fetchProductsError");
+                const data = await apiClient.get(`/products/featured`, {
+                        suppressError: true,
+                        errorFallback: [],
+                        onError: (error) => {
+                                hadError = true;
+                                console.error("Failed to fetch featured products", error);
+                                toast.error(error.response?.data?.message || fallbackMessage);
+                        },
+                });
+                if (hadError) {
+                        set({ error: fallbackMessage, loading: false });
+                        return [];
                 }
+                const featuredProducts = Array.isArray(data) ? data : [];
+                get().setProducts(featuredProducts);
+                set({ loading: false, error: null });
+                return featuredProducts;
         },
 }));
