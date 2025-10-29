@@ -14,13 +14,24 @@ export const useCategoryStore = create((set) => ({
 
         fetchCategories: async () => {
                 set({ loading: true, error: null });
-                try {
-                        const data = await apiClient.get(`/categories`);
-                        set({ categories: data?.categories ?? [], loading: false });
-                } catch (error) {
-                        set({ loading: false, error: error.response?.data?.message || "Failed to fetch categories" });
-                        toast.error(translate("toast.categoryFetchError"));
-                }
+                let hadError = false;
+                let resolvedErrorMessage = null;
+                const data = await apiClient.get(`/categories`, {
+                        suppressError: true,
+                        errorFallback: { categories: [] },
+                        onError: (error) => {
+                                hadError = true;
+                                resolvedErrorMessage =
+                                        error.response?.data?.message || translate("toast.categoryFetchError");
+                                toast.error(translate("toast.categoryFetchError"));
+                        },
+                });
+                set({
+                        categories: Array.isArray(data?.categories) ? data.categories : [],
+                        loading: false,
+                        error: hadError ? resolvedErrorMessage : null,
+                });
+                return data;
         },
 
         createCategory: async (payload) => {

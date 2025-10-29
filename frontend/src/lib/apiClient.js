@@ -1,19 +1,34 @@
-const normalizeBaseUrl = (value) => {
-        if (typeof value !== "string") {
-                return null;
-        }
+export const normalizeBaseUrl = (value, fallback = "/api") => {
+	if (typeof value !== "string") {
+		return fallback;
+	}
 
-        const trimmed = value.trim();
+	const trimmed = value.trim();
 
-        if (!trimmed) {
-                return null;
-        }
+	if (!trimmed) {
+		return fallback;
+	}
 
-        return trimmed.replace(/\/$/, "");
+	const normalized = trimmed.replace(/\/+$/, "");
+
+	return normalized || fallback;
 };
 
-const API_BASE_URL =
-        normalizeBaseUrl(import.meta.env.VITE_API_BASE_URL) || "/api";
+const readEnvBaseUrl = () => {
+	try {
+		const meta = typeof import.meta !== "undefined" ? import.meta : undefined;
+		const envValue = meta?.env?.VITE_API_BASE_URL;
+		return normalizeBaseUrl(envValue);
+	} catch (error) {
+		console.warn(
+			"[apiClient] Unable to resolve VITE_API_BASE_URL, using fallback '/api'",
+			error
+		);
+		return "/api";
+	}
+};
+
+const API_BASE_URL = readEnvBaseUrl();
 
 let refreshHandler = null;
 let logoutHandler = null;
@@ -65,41 +80,71 @@ const resolveEndpoint = (endpoint) => {
 };
 
 const request = async (endpoint, options = {}) => {
-        const { skipAuthRetry = false, ...restOptions } = options;
-        const config = buildFetchConfig(restOptions);
-        const response = await fetch(resolveEndpoint(endpoint), config);
+	const {
+		skipAuthRetry = false,
+		suppressError = false,
+		errorFallback = null,
+		onError,
+		...restOptions
+	} = options;
 
-        if (response.status === 401 && !skipAuthRetry && typeof refreshHandler === "function") {
+	try {
+		const config = buildFetchConfig(restOptions);
+		const response = await fetch(resolveEndpoint(endpoint), config);
 
-                try {
-                        if (!refreshPromise) {
-                                refreshPromise = refreshHandler();
-                        }
-                        await refreshPromise;
-                        refreshPromise = null;
-                        return request(endpoint, { ...options, skipAuthRetry: true });
-                } catch (error) {
-                        refreshPromise = null;
-                        if (typeof logoutHandler === "function") {
-                                logoutHandler();
-                        }
-                        throw error;
-                }
-        }
+		if (
+			response.status === 401 &&
+			!skipAuthRetry &&
+			typeof refreshHandler === "function"
+		) {
+			try {
+				if (!refreshPromise) {
+					refreshPromise = refreshHandler();
+				}
+				await refreshPromise;
+				refreshPromise = null;
+				return request(endpoint, { ...options, skipAuthRetry: true });
+			} catch (error) {
+				refreshPromise = null;
+				if (typeof logoutHandler === "function") {
+					logoutHandler();
+				}
+				throw error;
+			}
+		}
 
-        if (!response.ok) {
-                const errorData = await parseJsonSafe(response);
-                const error = new Error(
-                        errorData?.message || `Request failed with status ${response.status}`
-                );
-                error.response = {
-                        status: response.status,
-                        data: errorData,
-                };
-                throw error;
-        }
+		if (!response.ok) {
+			const errorData = await parseJsonSafe(response);
+			const error = new Error(
+				errorData?.message || `Request failed with status ${response.status}`
+			);
+			error.response = {
+				status: response.status,
+				data: errorData,
+			};
+			throw error;
+		}
 
-        return await parseJsonSafe(response);
+		return await parseJsonSafe(response);
+	} catch (error) {
+		console.error(
+			`[apiClient] Request to ${endpoint} failed: ${error.message}`,
+			error
+		);
+		if (typeof onError === "function") {
+			try {
+				onError(error);
+			} catch (handlerError) {
+				console.error("[apiClient] onError handler threw", handlerError);
+			}
+		}
+		if (suppressError) {
+			return typeof errorFallback === "function"
+				? errorFallback(error)
+				: errorFallback;
+		}
+		throw error;
+	}
 };
 
 export const apiClient = {
