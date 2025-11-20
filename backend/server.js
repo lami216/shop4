@@ -16,13 +16,14 @@ import orderRoutes from "./routes/order.route.js";
 
 import { connectDB } from "./lib/db.js";
 
-// Load env (server.js is at repo root; .env lives in ./backend/.env)
-dotenv.config({ path: "./backend/.env" });
+// جذر المشروع (repo root)
+const ROOT_DIR = path.resolve();
+
+// تحميل ملف .env من backend/.env بالنسبة لجذر المشروع
+dotenv.config({ path: path.join(ROOT_DIR, "backend", ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-const __dirname = path.resolve();
 
 /* ---------- CORS ---------- */
 const allowedOrigins = (process.env.ALLOWED_ORIGINS
@@ -74,10 +75,10 @@ app.use("/api/orders", orderRoutes);
 
 /* ---------- Static (production) ---------- */
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  app.use(express.static(path.join(ROOT_DIR, "frontend", "dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(ROOT_DIR, "frontend", "dist", "index.html"));
   });
 }
 
